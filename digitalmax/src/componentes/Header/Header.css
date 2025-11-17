@@ -45,6 +45,7 @@
     border-radius: 28px;
     border: none;
     outline: none;
+    padding-left: 15px;
     /* box-shadow: 1px 2px 10px #353434; */
 }
 .headerComponent>div:last-child{

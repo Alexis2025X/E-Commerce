@@ -18,7 +18,7 @@ function LoginLayout(){
 
     const navigateReguistre = useNavigate();
         const handleAccessRegistroLogin = () =>{
-            navigateReguistre('/')
+            navigateReguistre('/CrearCuenta')
         }
          
         const[dataLogin, setDataLogin] = useState({
@@ -41,7 +41,7 @@ function LoginLayout(){
                 if (data.status != "inactive"){
                   navigateReguistre(userStats)
                 }else{
-                  navigateReguistre('/app/productos')
+                  navigateReguistre('/')
                 }
 
             }else{

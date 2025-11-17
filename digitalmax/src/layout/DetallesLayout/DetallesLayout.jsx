@@ -6,7 +6,7 @@ import ReseñaProductDetalles from '../../componentes/ReseñaProductDetalles/Res
 import { useEffect, useState } from 'react';
 import ProductoDetallado from '../../componentes/ProductoDetallado/ProductoDetallado.jsx';
 import { obtenerProducto } from '../../API/ProductosAPI.js';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 function DetallesLayout() {
         const { id } = useParams();

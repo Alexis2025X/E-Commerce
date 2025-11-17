@@ -26,11 +26,11 @@ function App() {
     <>
     <Router>{/* Envolvemos la aplicación */}
       <Routes>{/* Para el contenedor de rutas */}
-      
-      <Route path='/' element={ <LayoutPadre/>}>{/* Envuelvo las rutas en un LayoutPadre el cual lleva el MenuHeader */}
       <Route index element={<ProductosLayout/>}/>
+      <Route path='/' element={ <LayoutPadre/>}>{/* Envuelvo las rutas en un LayoutPadre el cual lleva el MenuHeader */}
+      
         <Route path='/crearCuenta' element={<LayoutCrearCuenta/>}/>{/* Definimos la ruta */}
-
+        <Route path="/login" element={<LoginLayout/>}/> {/* acceso a la ruta de Login */}
               
         <Route path = '/Login' element = {<LoginLayout/>}></Route>      
         <Route path='/app' element={<LayoutMenuHamburguesa/>}>{/* Envuelvo con el MenuHamburguesa */}
@@ -38,7 +38,7 @@ function App() {
         <Route path={'/app/productos/producto/:id'} element={<DetallesLayout/>}/> 
         <Route path={'/app/carretilla'} element={<LayoutCarritoCompra/>}/> 
         {/* <Route path="/app/productos/producto/1" element={<DetallesLayout/>}/> Ruta de detalle de producto EL 1 ES TEMPORAL */}
-        <Route path="/app/login" element={<LoginLayout/>}/> {/* acceso a la ruta de Login */}
+        
         <Route path="*" element={ <div>Pagina no encontrada - 404</div> }/>       
 
 

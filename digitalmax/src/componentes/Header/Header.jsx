@@ -3,7 +3,7 @@ import React from "react";
 import logo from "../../assets/img/Logo_digitalmax.png";
 import shop from "../../assets/img/icon shop.png";
 import user from "../../assets/img/icon user.png";
-import search from "../../assets/img/icon search.png";
+import searchIcon from "../../assets/img/icon search.png";
 import engranaje from "../../assets/img/Icon_engranaje.png";
 import { useState } from "react";
 
@@ -13,7 +13,8 @@ import FormLogin from "../../layout/LayoutCrearCuenta/LayoutCrearCuenta";
 import solIcon from "../../assets/img/Sol icon.png";
 import lunaIcon from "../../assets/img/luna icon.png";
 
-function Header() {
+
+function Header(prop) {
   const [menu, setMenu] = useState(false);
   const cambioMenu = () => {
     setMenu(!menu);
@@ -31,11 +32,15 @@ function Header() {
     navigate("");
     setMenu(false);
   };
-   const handleAccessCarrto = () => {
+  const handleAccessCarrto = () => {
     navigate("/app/carretilla");
+    //navigate("/");
     setMenu(false);
   };
+
+
   return (
+    
     <header className="headerComponent">
       <div onClick={handleAccessProduct}>
         <img className="logoEcommer" src={logo} alt="DigitalMax" />
@@ -43,8 +48,8 @@ function Header() {
       </div>
 
       <div className="contentInput">
-        <input type="search" placeholder="Buscar producto"></input>
-        <img src={search} alt="" />
+        <input type="search" value={prop.search} onChange={prop.searcher} placeholder="Buscar producto"></input>
+        <img src={searchIcon} alt="" />
       </div>
       <div className="headercontenicon">
         <div onClick={handleAccessCarrto}>
