@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import ZoomImage from '../ZoomImage/ZoomImage';
 const precioDescuento = 0;
 
-function calcularPrecioDescuento(precio, descuento) {
+export function calcularPrecioDescuento(precio, descuento) {
     return (precio - (precio * descuento) / 100).toFixed(2);
 }
 
@@ -58,7 +58,7 @@ const cambioStadozoom  = () =>{
                     </div>
                 </main>
                 <main className='calificacionPrecio'>
-                    <PreciosComprar precioDescuento={calcularPrecioDescuento(props.precio, props.descuento)} precio={props.precio} descuento={props.descuento} stock={props.stock} />
+                    <PreciosComprar producID = {props.productID} precioDescuento={calcularPrecioDescuento(props.precio, props.descuento)} precio={props.precio} descuento={props.descuento} stock={props.stock} />
                 </main>
             </section>
             {/*  */}

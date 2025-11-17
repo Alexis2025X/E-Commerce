@@ -2,7 +2,9 @@ import { Controller, Get, Post, Delete,Put, Body,Param, ConflictException,HttpCo
 import { UserService } from './user.service';
 import { CreateUserDTO } from 'src/dto/createUser.dto'
 import { UpdateUserDTO } from 'src/dto/updateUser.dto';
-
+import { carrito } from 'src/schemas/carrito.schema';
+import { actualizaCarrito } from 'src/dto/updateUser.dto';
+import { CreateCarrito } from 'src/dto/createUser.dto';
 @Controller('user')
 export class UserController {
     constructor(private userService: UserService){}
@@ -28,6 +30,7 @@ export class UserController {
         }
         
     }
+   
 
     @Post()
     create(@Body()CreateUser: CreateUserDTO){
@@ -60,6 +63,46 @@ export class UserController {
        }
         return consulta;
        
+    }
+//Comienza el controlador de carrito de compra
+
+ @Post(':id/carrito')
+    createitemCarrito(@Param('id') id:string  ,@Body()Createitem: CreateCarrito){
+         try {
+            return  this.userService.createitemCar(id,Createitem);
+        } catch (error) {
+          if(error.code = "11000"){
+            throw new ConflictException("El usuario ya existe")
+          }
+          throw error;
+        }
+    }
+
+     @Get(':id/carrito')
+    async findAllCar(@Param('id') id:string){
+        return this.userService.findOneCarrito(id)
+    }
+    
+    @Put(':id/carrito/:idProduct')
+    @HttpCode(200)
+    async updatecarrito(@Param('id') id:string, @Param('idProduct') idProduct:string,@Body() carrito:actualizaCarrito){
+    const consulta = await this.userService.actualizarItemCarritoUser(id,idProduct,carrito)
+       if(!consulta){
+        throw new ConflictException("El usuario que intenta editar no existe " + consulta);
+       }
+        return consulta;
+       
+    }
+    @Delete(':iduser/carrito/:idproduct')
+    @HttpCode(204)
+    async deleteItemCarrito(@Param('iduser')iduser:string, @Param('idproduct') idProduct:string){
+        
+        const consult = await this.userService.eliminarItemCarritoUser(iduser,idProduct);            
+        if(!consult){
+            throw new ConflictException("El item de carrito que intenta eliminar no existe " + consult )
+        }
+        return consult;
+        
     }
 }   
 

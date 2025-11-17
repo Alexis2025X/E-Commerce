@@ -14,7 +14,8 @@ import LayoutMenuHamburguesa from './layout/LayoutMenuHamburguesa.jsx'
 import LoginLayout from './layout/LoginLayout/LoginLayout.jsx'
 import AdminPanel from './layout/AdminPanel/AdminPanel.jsx'
 import { obtenerProducto } from './API/ProductosAPI.js'
-
+import layouCarritoCompra from './layout/LayoutCarritoCompra/LayoutCarritoCompra.jsx'
+import LayoutCarritoCompra from './layout/LayoutCarritoCompra/LayoutCarritoCompra.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,9 +36,11 @@ function App() {
         <Route path='/app' element={<LayoutMenuHamburguesa/>}>{/* Envuelvo con el MenuHamburguesa */}
         
         <Route path={'/app/productos/producto/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/carretilla'} element={<LayoutCarritoCompra/>}/> 
         {/* <Route path="/app/productos/producto/1" element={<DetallesLayout/>}/> Ruta de detalle de producto EL 1 ES TEMPORAL */}
         <Route path="/app/login" element={<LoginLayout/>}/> {/* acceso a la ruta de Login */}
         <Route path="*" element={ <div>Pagina no encontrada - 404</div> }/>       
+
 
         </Route>
 

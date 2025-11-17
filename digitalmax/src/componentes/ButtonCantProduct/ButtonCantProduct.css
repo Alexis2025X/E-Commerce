@@ -13,7 +13,7 @@
 }
 .contentButtonDetalles>span{
     color: var(--color-secundary);
-    min-height: 100%;
+    min-height: 50%;
     min-width: 40%;
     cursor: pointer;
     text-align: center;
@@ -28,3 +28,15 @@
 .contentButtonDetalles>span:hover{
     color: var(--color-primary);
 } */
+
+.CarritoCantbtn{
+    max-width: 95%;
+    max-height: 40%;
+}
+@media (width<600px){
+    .CarritoCantbtn{
+        max-width: 40px;
+        max-height: 30px;
+        font-size: 1rem;
+    }
+}

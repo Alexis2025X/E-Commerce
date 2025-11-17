@@ -1,5 +1,6 @@
 .contenedorPadreLogin{
     width: 100vw;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +9,8 @@
 }
 
 .contenedorPadreLogin>.LoginContent{ 
-    max-width: 700px;
+    max-width: 1200px;
+    min-width: 80vw;
     width: 30%;
     margin-top: 20px;
     border: 2px solid #0066ff;

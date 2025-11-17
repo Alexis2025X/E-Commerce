@@ -35,3 +35,20 @@
     background: #0066ff;
     color: #fffff0;
 }
+.CarritoCompraBTN{
+    background-color: #AE0000;
+    max-width: 70%;
+    color: #fffff0;
+}
+.CarritoCompraBTN:hover{
+    background: #ff0000;
+}
+@media (width<600px){
+    .CarritoCompraBTN{
+        max-width: 40px;
+        max-height: 30px;
+    }
+    .CarritoCompraBTN>p{
+        font-size: 0.5rem;
+    }
+}

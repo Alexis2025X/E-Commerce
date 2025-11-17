@@ -5,6 +5,10 @@ import ButtonDetallesProduct from '../ButtonCantProduct/ButtonCantProduct';
 import ButtonActionProduc from '../ButtonActionProduc/ButtonActionProduc';
 import StardCalificacion from '../StardCalificacion/StardCalificacion';
 import EstadoProducto from '../EstadoProducto/EstadoProducto';
+import { useState } from 'react';
+
+import { agregarItemCarrito } from '../../API/UserAPI';
+
 function ProductoStock(prop) {
     if (prop.stock > 10) {
         return <EstadoProducto estado="Disponible" text="En Stock" />
@@ -16,7 +20,26 @@ function ProductoStock(prop) {
         return <EstadoProducto estado="Agotado" text="Agotado" />
     }
 }
+
+    
 function ProductoDescripcion(prop) {
+
+ async  function handleClickAgregarCarrito(){
+    try {
+     const productoCantidad = document.getElementById('productoCantidadSelect').innerText
+        const user = localStorage.getItem("user")
+     let datosCarrito = {
+            idProducto: prop.producID,
+            cantSelect: parseInt(productoCantidad)
+        }
+        let res = await agregarItemCarrito(user,datosCarrito)
+        alert("Producto guardado en el carrito")
+    } catch (error) {
+        alert("Error al guardar el producto" + error)
+        
+    }
+    }
+
     return (
 
         <div className='productDesContent'>
@@ -29,13 +52,13 @@ function ProductoDescripcion(prop) {
             </h3>
             <div className='contentButonAction'>
                 <div>
-                    <ButtonDetallesProduct stock={prop.stock}  />
+                    <ButtonDetallesProduct  stock={prop.stock}  />
                     <p>{prop.descuento}% de Descuento</p>
 
                     <ProductoStock stock={prop.stock} />
                 </div>
                 <span>
-                    <ButtonActionProduc status="ActionActivo" text="Agregar al carrito" />
+                    <ButtonActionProduc Click={handleClickAgregarCarrito} status="ActionActivo" text="Agregar al carrito" />
                     <ButtonActionProduc status="ActionActivo" text="Comprar ahora" />
                 </span>
 

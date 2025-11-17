@@ -20,7 +20,7 @@ function Header() {
   };
   const navigate = useNavigate();
   const handleAccessRegistro = () => {
-    navigate("");
+    navigate("/crearCuenta");
     setMenu(false);
   };
   const handleAccessLogin = () => {
@@ -28,7 +28,11 @@ function Header() {
     setMenu(false);
   };
   const handleAccessProduct = () => {
-    navigate("/app/productos");
+    navigate("");
+    setMenu(false);
+  };
+   const handleAccessCarrto = () => {
+    navigate("/app/carretilla");
     setMenu(false);
   };
   return (
@@ -43,7 +47,7 @@ function Header() {
         <img src={search} alt="" />
       </div>
       <div className="headercontenicon">
-        <div>
+        <div onClick={handleAccessCarrto}>
           <img src={shop} alt="" />
           <p>$0.00</p>
         </div>

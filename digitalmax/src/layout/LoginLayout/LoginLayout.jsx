@@ -37,6 +37,7 @@ function LoginLayout(){
             const res =  await obtenerUsers(dataLogin).then(res => res.json()).then((data) => {
             if(data.contraseña == dataLogin.contraseña){
                 alert("BIENVENIDO A DIGITALMAX")
+                localStorage.setItem('user',data._id)
                 if (data.status != "inactive"){
                   navigateReguistre(userStats)
                 }else{

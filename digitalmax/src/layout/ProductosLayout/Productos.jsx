@@ -30,13 +30,13 @@ useEffect(() => {
       setLoading(true);
       // Usamos fetchAllProducts para obtener todos los productos
       const fetchedProducts = await obtenerProductos();
-      console.log("Fetched products:", fetchedProducts);
+      //console.log("Fetched products:", fetchedProducts);
       setProducts(fetchedProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
-      console.log("Se cargaron los productos correctamente.");
+     // console.log("Se cargaron los productos correctamente.");
     }
   };
   fetchProducts();
