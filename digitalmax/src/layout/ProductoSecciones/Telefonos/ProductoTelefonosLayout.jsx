@@ -1,36 +1,28 @@
 import { useEffect, useState } from 'react'
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
-import './Productos.css'
+import './ProductoTelefonosLayout.css'
 
-import CardCategoria from '../../componentes/CardCategoria/CardCategoria'
+import CardCategoria from '../../../componentes/CardCategoria/CardCategoria'
 
-import CardProduct from '../../componentes/CardProduct/CardProduct'
-import ButtonContactUser from '../../componentes/ButtonContactUser/ButtonContactUser'
+import CardProduct from '../../../componentes/CardProduct/CardProduct'
 import { useNavigate } from 'react-router-dom'
-import { obtenerProductos } from '../../API/ProductosAPI'
-import Header from '../../componentes/Header/Header'
+import { obtenerProductos } from '../../../API/ProductosAPI'
+import Header from '../../../componentes/Header/Header'
 
-import nuevo from '../../assets/img/nuevo.png'
-import promo from '../../assets/img/promo.png'
-import marcas from '../../assets/img/marcas.jpg'
-import DetallesLayout from '../DetallesLayout/DetallesLayout'
-import HamburguerMenu from '../../componentes/HamburguerMenu/HamburguerMenu'
+// import nuevo from '../../../assets/img/nuevo.png'
+// import promo from '../../../assets/img/promo.png'
+// import vendido from '../../../assets/img/vendido.png'
+import HamburguerMenu from '../../../componentes/HamburguerMenu/HamburguerMenu'
 // const [productos, setProductos] = useState([])
 
 
-function Productos() {    
-    const categoriaTelefono = () =>{
-        navigate(`/telefonos`)
-    }
-    const categoriaComputadora = () =>{
-        navigate(`/computadoras`)
-    }
+function ProductoTelefonosLayout() {    
+
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const handleProducto = (id) =>{
-        navigate(`/app/productos/producto/${id}`)
+        navigate(`/app/productos/producto/telefonos/${id}`)
+        //navigate(`/app/productos/producto/Telefonos/${id}`)
     }
   const [search, setSearch] = useState("")
   
@@ -57,6 +49,24 @@ function Productos() {
       return <div className='resuls'>No hay resultados para su busqueda</div>;
     }
   }
+  function telefonosCategory(products) {
+    try{
+    const telefonos = products.filter((filtro) => filtro.categoria === 'Teléfono' );
+    if (!telefonos || telefonos.length === 0) {
+      console.log("No hay productos disponibles para filtrar.");
+      return <div>No hay productos disponibles para filtrar.</div>;
+
+    }else{
+      return telefonos;
+    }
+    }catch(error){
+      <div>"Error al filtrar los productos por categoria telefonos"</div>
+    } finally {
+      
+    }
+
+  }
+
 
 useEffect(() => {
 
@@ -65,9 +75,7 @@ useEffect(() => {
       setLoading(true);
       // Usamos fetchAllProducts para obtener todos los productos
       const fetchedProducts = await obtenerProductos();
-      
-      //console.log("Fetched products:", fetchedProducts);
-      setProducts(fetchedProducts);
+      setProducts(telefonosCategory(fetchedProducts));
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
@@ -91,20 +99,11 @@ useEffect(() => {
     <Header search={search} searcher={searcher}/>
     <HamburguerMenu />
     <main className='mainConteiner'>
-      
-      
-      <div className="contentCat">
-      <CardCategoria link={categoriaTelefono} src = {promo} alt = "Teléfonos" />
-      <CardCategoria link={categoriaComputadora} src = {nuevo} alt = "Computadoras" />
-      <CardCategoria src = {marcas} alt = 'Marcas' />
-      {/* <CardCategoria src = {promo} alt = "Promociones" />
-      <CardCategoria src = {nuevo} alt = "Lo nuevo" />
-      <CardCategoria src = {vendido} alt = 'Lo más vendido' /> */}
-      </div>
 
-      <h2 className='subtituloProductos'>Productos</h2>
+      <h2 className='subtituloProductos'>Teléfonos</h2>
       <div className="contentProduct">
-      {resultados.map((product) => (
+      {
+      resultados.map((product) => (
       <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
       ))}
       {Loading(loading)}
@@ -115,4 +114,4 @@ useEffect(() => {
   )
 }
 
-export default Productos
+export default ProductoTelefonosLayout

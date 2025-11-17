@@ -16,6 +16,8 @@ import AdminPanel from './layout/AdminPanel/AdminPanel.jsx'
 import { obtenerProducto } from './API/ProductosAPI.js'
 import layouCarritoCompra from './layout/LayoutCarritoCompra/LayoutCarritoCompra.jsx'
 import LayoutCarritoCompra from './layout/LayoutCarritoCompra/LayoutCarritoCompra.jsx'
+import ProductoTelefonosLayout from './layout/ProductoSecciones/Telefonos/ProductoTelefonosLayout.jsx'
+import ProductoComputadorasLayout from './layout/ProductoSecciones/Computadoras/ProductoComputadorasLayout.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +29,8 @@ function App() {
     <Router>{/* Envolvemos la aplicación */}
       <Routes>{/* Para el contenedor de rutas */}
       <Route index element={<ProductosLayout/>}/>
+      <Route path='/telefonos' element={<ProductoTelefonosLayout/>}/>
+      <Route path='/computadoras' element={<ProductoComputadorasLayout/>}/>
       <Route path='/' element={ <LayoutPadre/>}>{/* Envuelvo las rutas en un LayoutPadre el cual lleva el MenuHeader */}
       
         <Route path='/crearCuenta' element={<LayoutCrearCuenta/>}/>{/* Definimos la ruta */}
@@ -36,6 +40,7 @@ function App() {
         <Route path='/app' element={<LayoutMenuHamburguesa/>}>{/* Envuelvo con el MenuHamburguesa */}
         
         <Route path={'/app/productos/producto/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/telefonos/:id'} element={<DetallesLayout/>}/> 
         <Route path={'/app/carretilla'} element={<LayoutCarritoCompra/>}/> 
         {/* <Route path="/app/productos/producto/1" element={<DetallesLayout/>}/> Ruta de detalle de producto EL 1 ES TEMPORAL */}
         
