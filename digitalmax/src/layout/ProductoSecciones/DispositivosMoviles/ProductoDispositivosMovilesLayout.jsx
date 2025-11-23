@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './ProductoComputadorasLayout.css'
+import './ProductoDispositivosMovilesLayout.css'
 
 import CardCategoria from '../../../componentes/CardCategoria/CardCategoria'
 
@@ -15,13 +15,13 @@ import HamburguerMenu from '../../../componentes/HamburguerMenu/HamburguerMenu'
 // const [productos, setProductos] = useState([])
 
 
-function ProductoComputadorasLayout() {    
+function ProductoDispositivosMovilesLayout() {    
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const handleProducto = (id) =>{
-        navigate(`/app/productos/producto/computadoras/${id}`)
+        navigate(`/app/productos/producto/dispositivos-moviles/${id}`)
         //navigate(`/app/productos/producto/Telefonos/${id}`)
     }
   const [search, setSearch] = useState("")
@@ -50,7 +50,7 @@ function ProductoComputadorasLayout() {
     }
   }
   function productoCategory(products) {
-    const categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Computadoras');
+    const categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Dispositivos Moviles' || filtro.categoria === 'dispositivos moviles' );
     if (!categoriaSeccion || categoriaSeccion.length === 0) {
       console.log("No hay productos disponibles para filtrar.");
       return <div>No hay productos disponibles para filtrar.</div>;
@@ -60,6 +60,18 @@ function ProductoComputadorasLayout() {
     }
   }
 
+  function mostrarProductos(resultados){
+    try{
+    return resultados.map((product) => (
+      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+      ))
+    }catch(error){
+      //console.log("Error al mostrar los productos")
+      return <div>No se pudieron cargar los productos</div>
+    }finally{
+      //console.log("Productos mostrados correctamente")
+    }
+  }
 
 useEffect(() => {
 
@@ -93,17 +105,22 @@ useEffect(() => {
     <HamburguerMenu />
     <main className='mainConteiner'>
 
-      <h2 className='subtituloProductos'>Computadoras</h2>
-      <div className="contentProduct">
-      {resultados.map((product) => (
-      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
-      ))}
+      <h2 className='subtituloProductos'>¡Potencia en tus manos! <br /> Descubre los dispositivos que conectan tu mundo.</h2>
+      <div>
       {Loading(loading)}
       {sinResultados()}
+      </div>
+      <div className="contentProduct">
+      {
+      // resultados.map((product) => (
+      // <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+      // ))
+      mostrarProductos(resultados)
+      }
       </div>
     </main>
     </>
   )
 }
 
-export default ProductoComputadorasLayout
+export default ProductoDispositivosMovilesLayout

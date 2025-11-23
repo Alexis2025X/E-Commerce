@@ -11,9 +11,13 @@ import { useNavigate } from 'react-router-dom'
 import { obtenerProductos } from '../../API/ProductosAPI'
 import Header from '../../componentes/Header/Header'
 
-import nuevo from '../../assets/img/nuevo.png'
-import promo from '../../assets/img/promo.png'
-import marcas from '../../assets/img/marcas.jpg'
+import computo from '../../assets/img/nuevo.png'
+import telefono from '../../assets/img/dispositivos_moviles.png'
+import audio from '../../assets/img/audio.png'
+import cables from '../../assets/img/cables.png'
+import seguridad from '../../assets/img/seguridad.png'
+import casa_oficina from '../../assets/img/casa_oficina.png'
+import redes from '../../assets/img/redes.png'
 import DetallesLayout from '../DetallesLayout/DetallesLayout'
 import HamburguerMenu from '../../componentes/HamburguerMenu/HamburguerMenu'
 // const [productos, setProductos] = useState([])
@@ -21,11 +25,30 @@ import HamburguerMenu from '../../componentes/HamburguerMenu/HamburguerMenu'
 
 function Productos() {    
     const categoriaTelefono = () =>{
-        navigate(`/telefonos`)
+        navigate(`/dispositivos-moviles`)
     }
     const categoriaComputadora = () =>{
-        navigate(`/computadoras`)
+        navigate(`/computo`)
     }
+    const marca = () =>{
+        navigate(`/marcas`)
+    }
+    const categoriaAudio = () =>{
+        navigate(`/audio`)
+    }
+    const categoriaCables = () =>{
+        navigate(`/cables`)
+    }
+    const categoriaSeguridad = () =>{
+        navigate(`/seguridad`)
+    }
+    const categoriaCasa_oficina = () =>{
+        navigate(`/casa-oficina`)
+    }
+    const categoriaRedes = () =>{
+        navigate(`/redes`)
+    }
+
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -55,6 +78,18 @@ function Productos() {
   const sinResultados = () =>{
   if (resultados.length === 0) {
       return <div className='resuls'>No hay resultados para su busqueda</div>;
+    }
+  }
+  function mostrarProductos(resultados){
+    try{
+    return resultados.map((product) => (
+      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+      ))
+    }catch(error){
+      console.log("Error al mostrar los productos")
+      return <div>No se pudieron cargar los productos</div>
+    }finally{
+      console.log("Productos mostrados correctamente")
     }
   }
 
@@ -94,9 +129,13 @@ useEffect(() => {
       
       
       <div className="contentCat">
-      <CardCategoria link={categoriaTelefono} src = {promo} alt = "Teléfonos" />
-      <CardCategoria link={categoriaComputadora} src = {nuevo} alt = "Computadoras" />
-      <CardCategoria src = {marcas} alt = 'Marcas' />
+      <CardCategoria link={categoriaTelefono} src = {telefono} alt = "Dispositivos moviles" />
+      <CardCategoria link={categoriaComputadora} src = {computo} alt = "Computación" />
+      <CardCategoria link={categoriaAudio} src = {audio} alt = 'Audio' />
+      <CardCategoria link={categoriaCables} src = {cables} alt = 'Cables' />
+      <CardCategoria link={categoriaSeguridad} src = {seguridad} alt = 'Seguridad' />
+      <CardCategoria link={categoriaCasa_oficina} src = {casa_oficina} alt = 'Casa y Oficina' />
+      <CardCategoria link={categoriaRedes} src = {redes} alt = 'Redes'/>
       {/* <CardCategoria src = {promo} alt = "Promociones" />
       <CardCategoria src = {nuevo} alt = "Lo nuevo" />
       <CardCategoria src = {vendido} alt = 'Lo más vendido' /> */}
@@ -104,9 +143,10 @@ useEffect(() => {
 
       <h2 className='subtituloProductos'>Productos</h2>
       <div className="contentProduct">
-      {resultados.map((product) => (
+      {/*resultados.map((product) => (
       <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
-      ))}
+      ))*/}
+      {mostrarProductos(resultados)}
       {Loading(loading)}
       {sinResultados()}
       </div>

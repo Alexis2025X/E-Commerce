@@ -16,8 +16,13 @@ import AdminPanel from './layout/AdminPanel/AdminPanel.jsx'
 import { obtenerProducto } from './API/ProductosAPI.js'
 import layouCarritoCompra from './layout/LayoutCarritoCompra/LayoutCarritoCompra.jsx'
 import LayoutCarritoCompra from './layout/LayoutCarritoCompra/LayoutCarritoCompra.jsx'
-import ProductoTelefonosLayout from './layout/ProductoSecciones/Telefonos/ProductoTelefonosLayout.jsx'
-import ProductoComputadorasLayout from './layout/ProductoSecciones/Computadoras/ProductoComputadorasLayout.jsx'
+import ProductoDispositivosMovilesLayout from './layout/ProductoSecciones/DispositivosMoviles/ProductoDispositivosMovilesLayout.jsx'
+import ProductoComputoLayout from './layout/ProductoSecciones/Computo/ProductoComputoLayout.jsx'
+import ProductoCablesLayout from './layout/ProductoSecciones/Cables/ProductoCablesLayout.jsx'
+import ProductoAudioLayout from './layout/ProductoSecciones/Audio/ProductoAudioLayout.jsx'
+import ProductoSeguridadLayout from './layout/ProductoSecciones/Seguridad/ProductoSeguridadLayout.jsx'
+import ProductoCasaOficinaLayout from './layout/ProductoSecciones/CasaOficina/ProductoCasaOficinaLayout.jsx'
+import ProductoRedesLayout from './layout/ProductoSecciones/Redes/ProductoRedesLayout.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,8 +34,13 @@ function App() {
     <Router>{/* Envolvemos la aplicación */}
       <Routes>{/* Para el contenedor de rutas */}
       <Route index element={<ProductosLayout/>}/>
-      <Route path='/telefonos' element={<ProductoTelefonosLayout/>}/>
-      <Route path='/computadoras' element={<ProductoComputadorasLayout/>}/>
+      <Route path='/dispositivos-moviles' element={<ProductoDispositivosMovilesLayout/>}/>
+      <Route path='/computo' element={<ProductoComputoLayout/>}/>
+      <Route path='/audio' element={<ProductoAudioLayout/>}/>
+      <Route path='/cables' element={<ProductoCablesLayout/>}/>
+      <Route path='/seguridad' element={<ProductoSeguridadLayout/>}/>
+      <Route path='/casa-oficina' element={<ProductoCasaOficinaLayout/>}/>
+      <Route path='/redes' element={<ProductoRedesLayout/>}/>
       <Route path='/' element={ <LayoutPadre/>}>{/* Envuelvo las rutas en un LayoutPadre el cual lleva el MenuHeader */}
       
         <Route path='/crearCuenta' element={<LayoutCrearCuenta/>}/>{/* Definimos la ruta */}
@@ -40,7 +50,13 @@ function App() {
         <Route path='/app' element={<LayoutMenuHamburguesa/>}>{/* Envuelvo con el MenuHamburguesa */}
         
         <Route path={'/app/productos/producto/:id'} element={<DetallesLayout/>}/> 
-        <Route path={'/app/productos/producto/telefonos/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/dispositivos-moviles/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/computo/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/audio/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/cables/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/seguridad/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/casa-oficina/:id'} element={<DetallesLayout/>}/> 
+        <Route path={'/app/productos/producto/redes/:id'} element={<DetallesLayout/>}/> 
         <Route path={'/app/carretilla'} element={<LayoutCarritoCompra/>}/> 
         {/* <Route path="/app/productos/producto/1" element={<DetallesLayout/>}/> Ruta de detalle de producto EL 1 ES TEMPORAL */}
         

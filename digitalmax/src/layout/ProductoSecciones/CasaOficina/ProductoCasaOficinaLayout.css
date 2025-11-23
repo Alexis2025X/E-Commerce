@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .contentCat{
   width:85vw;
   height: auto;
@@ -15,7 +14,7 @@
   justify-content: space-evenly;
   gap: 5px;
   scroll-snap-type: x mandatory;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
 
 }
 .contentCat>div:first-child{
@@ -30,9 +29,7 @@
   width: 85vw;
  
 }
-.resuls{
-  color: red;
-}
+
 .contentProduct{
   max-width: 85vw;
   height: auto;

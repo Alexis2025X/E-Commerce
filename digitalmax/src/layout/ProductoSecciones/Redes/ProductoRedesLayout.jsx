@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './ProductoComputadorasLayout.css'
+import './ProductoRedesLayout.css'
 
 import CardCategoria from '../../../componentes/CardCategoria/CardCategoria'
 
@@ -8,20 +8,20 @@ import { useNavigate } from 'react-router-dom'
 import { obtenerProductos } from '../../../API/ProductosAPI'
 import Header from '../../../componentes/Header/Header'
 
-import nuevo from '../../../assets/img/nuevo.png'
-import promo from '../../../assets/img/promo.png'
-import vendido from '../../../assets/img/vendido.png'
+// import nuevo from '../../../assets/img/nuevo.png'
+// import promo from '../../../assets/img/promo.png'
+// import vendido from '../../../assets/img/vendido.png'
 import HamburguerMenu from '../../../componentes/HamburguerMenu/HamburguerMenu'
 // const [productos, setProductos] = useState([])
 
 
-function ProductoComputadorasLayout() {    
+function ProductoRedesLayout() {    
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const handleProducto = (id) =>{
-        navigate(`/app/productos/producto/computadoras/${id}`)
+        navigate(`/app/productos/producto/computo/${id}`)
         //navigate(`/app/productos/producto/Telefonos/${id}`)
     }
   const [search, setSearch] = useState("")
@@ -50,7 +50,7 @@ function ProductoComputadorasLayout() {
     }
   }
   function productoCategory(products) {
-    const categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Computadoras');
+    const categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Redes' || filtro.categoria === 'redes' );
     if (!categoriaSeccion || categoriaSeccion.length === 0) {
       console.log("No hay productos disponibles para filtrar.");
       return <div>No hay productos disponibles para filtrar.</div>;
@@ -92,25 +92,21 @@ useEffect(() => {
     <Header search={search} searcher={searcher}/>
     <HamburguerMenu />
     <main className='mainConteiner'>
-      <div className="contentCat">
-      <CardCategoria link={categoriaTelefono} src = {promo} alt = "Samsung" />
-      <CardCategoria link={categoriaComputadora} src = {nuevo} alt = "Apple" />
-      <CardCategoria src = {vendido} alt = 'LG' />
-      {/* <CardCategoria src = {promo} alt = "Promociones" />
-      <CardCategoria src = {nuevo} alt = "Lo nuevo" />
-      <CardCategoria src = {vendido} alt = 'Lo más vendido' /> */}
+
+      <h2 className='subtituloProductos'>!Conectividad sin límites¡ <br /> Construye la red más rápida y estable.</h2>
+      <div>
+      {Loading(loading)}
+      {sinResultados()}
       </div>
-      <h2 className='subtituloProductos'>Computadoras</h2>
       <div className="contentProduct">
       {resultados.map((product) => (
       <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
       ))}
-      {Loading(loading)}
-      {sinResultados()}
+
       </div>
     </main>
     </>
   )
 }
 
-export default ProductoComputadorasLayout
+export default ProductoRedesLayout

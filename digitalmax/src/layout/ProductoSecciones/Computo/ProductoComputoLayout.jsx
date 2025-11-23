@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './ProductoTelefonosLayout.css'
+import './ProductoComputoLayout.css'
 
 import CardCategoria from '../../../componentes/CardCategoria/CardCategoria'
 
@@ -15,13 +15,13 @@ import HamburguerMenu from '../../../componentes/HamburguerMenu/HamburguerMenu'
 // const [productos, setProductos] = useState([])
 
 
-function ProductoTelefonosLayout() {    
+function ProductoComputoLayout() {    
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const handleProducto = (id) =>{
-        navigate(`/app/productos/producto/telefonos/${id}`)
+        navigate(`/app/productos/producto/computo/${id}`)
         //navigate(`/app/productos/producto/Telefonos/${id}`)
     }
   const [search, setSearch] = useState("")
@@ -49,22 +49,15 @@ function ProductoTelefonosLayout() {
       return <div className='resuls'>No hay resultados para su busqueda</div>;
     }
   }
-  function telefonosCategory(products) {
-    try{
-    const telefonos = products.filter((filtro) => filtro.categoria === 'Teléfono' );
-    if (!telefonos || telefonos.length === 0) {
+  function productoCategory(products) {
+    const categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Computo' || filtro.categoria === 'computo' );
+    if (!categoriaSeccion || categoriaSeccion.length === 0) {
       console.log("No hay productos disponibles para filtrar.");
       return <div>No hay productos disponibles para filtrar.</div>;
 
     }else{
-      return telefonos;
+      return categoriaSeccion;
     }
-    }catch(error){
-      <div>"Error al filtrar los productos por categoria telefonos"</div>
-    } finally {
-      
-    }
-
   }
 
 
@@ -75,7 +68,7 @@ useEffect(() => {
       setLoading(true);
       // Usamos fetchAllProducts para obtener todos los productos
       const fetchedProducts = await obtenerProductos();
-      setProducts(telefonosCategory(fetchedProducts));
+      setProducts(productoCategory(fetchedProducts));
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
@@ -100,18 +93,20 @@ useEffect(() => {
     <HamburguerMenu />
     <main className='mainConteiner'>
 
-      <h2 className='subtituloProductos'>Teléfonos</h2>
-      <div className="contentProduct">
-      {
-      resultados.map((product) => (
-      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
-      ))}
+      <h2 className='subtituloProductos'>¡Potencia tu productividad! <br /> Equipos y componentes para llevar tus ideas más lejos.</h2>
+      <div>
       {Loading(loading)}
       {sinResultados()}
+      </div>
+      <div className="contentProduct">
+      {resultados.map((product) => (
+      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+      ))}
+
       </div>
     </main>
     </>
   )
 }
 
-export default ProductoTelefonosLayout
+export default ProductoComputoLayout
