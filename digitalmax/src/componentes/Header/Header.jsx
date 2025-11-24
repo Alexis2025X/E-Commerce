@@ -29,7 +29,7 @@ function Header(prop) {
     setMenu(false);
   };
   const handleAccessProduct = () => {
-    navigate("");
+    navigate("/");
     setMenu(false);
   };
   const handleAccessCarrto = () => {
@@ -71,10 +71,10 @@ function Header(prop) {
             <li>Iniciar Sesión</li>
           </a>
         </ul>
-        <div className="contentIconColor">
+        {/* <div className="contentIconColor">
           <img src={solIcon} alt="" />
           <img src={lunaIcon} alt="" />
-        </div>
+        </div> */}
       </div>
     </header>
   );

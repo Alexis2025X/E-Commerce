@@ -35,7 +35,7 @@ position: fixed;
     }
 
     .headerComponent>div:last-child {/*Contenedor imagen y h2*/
-        width: 501px;
+        /* width: 501px; */
     }
 
     .headerComponent>div:first-child img {

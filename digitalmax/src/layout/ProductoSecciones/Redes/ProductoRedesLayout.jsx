@@ -21,7 +21,7 @@ function ProductoRedesLayout() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const handleProducto = (id) =>{
-        navigate(`/app/productos/producto/computo/${id}`)
+        navigate(`/app/productos/producto/redes/${id}`)
         //navigate(`/app/productos/producto/Telefonos/${id}`)
     }
   const [search, setSearch] = useState("")
@@ -93,7 +93,7 @@ useEffect(() => {
     <HamburguerMenu />
     <main className='mainConteiner'>
 
-      <h2 className='subtituloProductos'>!Conectividad sin límites¡ <br /> Construye la red más rápida y estable.</h2>
+      <h2 className='subtituloProductos'>¡Conectividad sin límites! <br /> Construye la red más rápida y estable.</h2>
       <div>
       {Loading(loading)}
       {sinResultados()}

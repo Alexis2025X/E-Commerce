@@ -20,6 +20,7 @@ import casa_oficina from '../../assets/img/casa_oficina.png'
 import redes from '../../assets/img/redes.png'
 import DetallesLayout from '../DetallesLayout/DetallesLayout'
 import HamburguerMenu from '../../componentes/HamburguerMenu/HamburguerMenu'
+import ChatButtons from '../../componentes/ChatButtons/ChatButtons';
 // const [productos, setProductos] = useState([])
 
 
@@ -124,7 +125,7 @@ useEffect(() => {
     
     <>
     <Header search={search} searcher={searcher}/>
-    <HamburguerMenu />
+    {/* <HamburguerMenu /> */}
     <main className='mainConteiner'>
       
       
@@ -142,13 +143,17 @@ useEffect(() => {
       </div>
 
       <h2 className='subtituloProductos'>Productos</h2>
+      <div>
+      
+      {Loading(loading)}
+      {sinResultados()}        
+      </div>
+      <ChatButtons/>
       <div className="contentProduct">
       {/*resultados.map((product) => (
       <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
       ))*/}
       {mostrarProductos(resultados)}
-      {Loading(loading)}
-      {sinResultados()}
       </div>
     </main>
     </>
