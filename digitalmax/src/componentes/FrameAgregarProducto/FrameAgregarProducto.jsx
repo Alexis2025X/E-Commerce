@@ -4,6 +4,7 @@ import ButtonActionProduc from "../ButtonActionProduc/ButtonActionProduc";
 import { useState } from "react";
 import { crearProduct } from "../../API/ProductosAPI";
 import imageCompression from 'browser-image-compression';
+import Swal from 'sweetalert2';
 
 function FrameAgregarProducto() {
   const [textImg, setTextImage] = useState("");
@@ -82,26 +83,40 @@ function FrameAgregarProducto() {
       const res = await crearProduct(dataProduc);
       const data = res.json();
       if (res.status === 201) {
-        alert("Producto guardado con exito");
+        //alert("Producto guardado con exito");
+        Swal.fire({
+          title: "Producto creado con exito",
+          text: "¡El producto ha sido creado correctamente!",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Aceptar"
+        });
       }
     } catch (error) {
       console.error("Producto no creado", error);
-      alert("Error al crear el producto intentelo nuevamente");
+      //alert("Error al crear el producto intentelo nuevamente");
+      Swal.fire({
+        title: "Error al crear el producto",
+        text: "Intentelo nuevamente",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Aceptar"
+      });
     }
     resetStatusForm();
   };
 
-  async function  handleImageText(event) {
+  async function handleImageText(event) {
     const options = {
-    maxSizeMB: 0.01,         
-    maxWidthOrHeight: 800,   
-    useWebWorker: true, 
-  };
-  let dataImageCompress = '';
-    const image =   await imageCompression(event.target.files[0], options).then((data) => {dataImageCompress = data})
+      maxSizeMB: 0.01,
+      maxWidthOrHeight: 800,
+      useWebWorker: true,
+    };
+    let dataImageCompress = '';
+    const image = await imageCompression(event.target.files[0], options).then((data) => { dataImageCompress = data })
     console.log(event.target.files[0])
     console.log(image)
-    
+
     const lector = new FileReader();
     lector.onload = () => {
       setDataProduct({ ...dataProduc, [event.target.name]: lector.result });
@@ -149,7 +164,7 @@ function FrameAgregarProducto() {
         <div className="contentInputImage">
           <input
             type="file"
-            onChange={ handleImageText}
+            onChange={handleImageText}
             id="archivo_subir"
             name="imagenUrl"
             className="subirImagenes"
@@ -168,7 +183,7 @@ function FrameAgregarProducto() {
             name="imagenUrl2"
             className="subirImagenes"
           />
-        
+
         </div>
       </div>
       <h2>Información Comercial</h2>
