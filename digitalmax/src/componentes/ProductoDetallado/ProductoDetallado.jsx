@@ -34,7 +34,6 @@ function ProductoDetallado(props) {
 
   const [calidicacionReseña, setCalificacionReseña] = useState(0);
 
-  const [data_envio, setDataEvio] = useState({})
 
   function handleCambioCal(event) {
     let nuevaCal = event.target.id;
@@ -43,6 +42,11 @@ function ProductoDetallado(props) {
     }
   }
 
+   
+
+   
+            
+  
 
 
   function handleZoomImg(srcImage) {
@@ -109,6 +113,28 @@ function ProductoDetallado(props) {
       console.error(error)
     }
   }
+function calcularDias(fechaEspecifica) {
+    const fechaInicial = new Date(fechaEspecifica);
+    const fechaHoy = new Date();
+    fechaInicial.setHours(0, 0, 0, 0);
+    fechaHoy.setHours(0, 0, 0, 0);
+    const diferenciaMilisegundos = fechaHoy.getTime() - fechaInicial.getTime();
+    const MS_POR_DIA = 86400000;
+    const diasTranscurridos = Math.round(diferenciaMilisegundos / MS_POR_DIA);
+
+
+  if(diasTranscurridos == 0){
+    return "Hoy"
+  }else if(diasTranscurridos <= 7){
+    return "Hace " + diasTranscurridos +" días"
+  }
+  else if(diasTranscurridos > 7){
+    return fechaInicial.toLocaleDateString('es-ES')
+  }
+}
+
+const productos = props.resenas;
+ 
   return (
     <>
       {statusImage ? (
@@ -185,14 +211,17 @@ function ProductoDetallado(props) {
             />
           </section>
           <div>
-            <ReseñaProductDetalles
-              titulo={"Buen producto"}
-              nombre={"jimmy 🏳️‍🌈"}
+
+          {productos?.map((producto) => (
+        <ReseñaProductDetalles
+              titulo={producto.titulo}
+              nombre={producto.userNameReseña}
               calificacion={15}
-              reseña={
-                "Holi solo quiero decirle a la gente que hizo este esta tienda que esemause esta muy precioso, gracias por pensar en nosotros los quiero, besitos 😚💅"
-              }
-            />
+              valoracion = {producto.valoracion}
+              reseña={producto.descripcion}
+              tiempo = { calcularDias(producto.createdAt)}
+              />
+      ))}         
           </div>
         </main>
         {createReseña ? (
@@ -217,6 +246,7 @@ function ProductoDetallado(props) {
               </div>
             </div>
             <br />
+           
 
             <ButtonActionProduc
               status={"ActionActivo"}

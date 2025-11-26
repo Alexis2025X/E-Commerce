@@ -48,9 +48,7 @@
     width: 275px;
     cursor: pointer;
 }
-.contentDescripcion >.imgProducto:last-child{
-    background-color: red;
-}
+
 .contentImageSec{
     width: 100px;
     height: 100px;
@@ -100,6 +98,7 @@
 .contentEspecificaciones{
     margin-left: 10px;
     margin-right: 10px;
+
 }
 
 .contentReseña{
@@ -114,12 +113,10 @@
     grid-template-columns: 3fr 1fr;
 }
 .contentReseña>div {
-    border: 1px solid #7D7D7D;
-    /* background-color: #f4f4f4; */
-    background-color: rgba(125, 125, 125, 0.4667);
+    background-color: transparent;
+    border: 0px;
     width: 100%;
     border-radius: 10px;
-    /* margin-top: -20px; */
 }
 .contentReseñaText{
     display: flex;
@@ -184,6 +181,7 @@
 
 
 }
+
 @media (width < 500px) {
     .contentDetalles {
         grid-template-columns: 1fr;

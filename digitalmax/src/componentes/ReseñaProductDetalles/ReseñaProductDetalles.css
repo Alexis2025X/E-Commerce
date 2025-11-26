@@ -2,6 +2,12 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: 5px;
+    background-color: rgba(125, 125, 125, 0.4667);
+    border: 1px solid #7D7D7D;
+    border-radius: 16px;
+    
+
 }
 
 /* .infoUserReseña {
