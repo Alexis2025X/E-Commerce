@@ -6,7 +6,7 @@ function ReseñaProductDetalles(props){
             <h3>{props.titulo}</h3>
             <div className="infoUserReseña">
                 <StardCalificacion tamaño = {props.calificacion} count = {props.valoracion}/>  
-                <h4>{props.tiempo +  "   • "+ props.nombre}</h4>
+                <p>{props.tiempo +  "   • "+ props.nombre}</p>
             </div>
             <span>
                 <p>{props.reseña}</p>
