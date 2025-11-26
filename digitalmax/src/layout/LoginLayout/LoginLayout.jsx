@@ -9,7 +9,7 @@ import { Buttons } from '../../componentes/ButtonLogin/Buttons';
 import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
-import { crearUser, obtenerUsers } from '../../API/UserAPI';
+import { obtenertoken } from '../../API/UserAPI';
 
 import { userStats } from '../../API/ProductosAPI';
 
@@ -33,27 +33,13 @@ function LoginLayout(){
         }
         const submitLogin = async () =>{
             try {
-                const datos = {}
-            const res =  await obtenerUsers(dataLogin).then(res => res.json()).then((data) => {
-            if(data.contraseña == dataLogin.contraseña){
-                alert("BIENVENIDO A DIGITALMAX")
-                localStorage.setItem('user',data._id)
-                localStorage.setItem('username',data.nombre)
-                if (data.status != "inactive"){
-                  navigateReguistre(userStats)
-                }else{
-                  navigateReguistre('/app/productos')
-                }
+            const obtenCookie = await obtenertoken(dataLogin)
 
+            if(obtenCookie.status == 201){
+                navigateReguistre('/')
             }else{
-                alert("Contraeña y/o usuario incorrectos, acceso denegado")
-
+                 alert("Usuario y/o contraseña incorrectos")
             }
-
-            })
-            
-            
-            
 
             } catch (error) {
                 alert("Contraeña y/o usuario incorrectos")

@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/passport-jwt": "^4.0.1",
     "browser-image-compression": "^2.0.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.4",
-    "react-router-dom": "^7.9.4"
+    "react-router-dom": "^7.9.4",
+    "save-dev": "0.0.1-security"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

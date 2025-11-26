@@ -1,7 +1,6 @@
 import { Controller, Module } from '@nestjs/common';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
-import { Mongoose }  from 'mongoose';
 import { MongooseModule, Schema } from '@nestjs/mongoose';
 import { User, userShecma } from 'src/schemas/user.schema';
 
@@ -13,8 +12,8 @@ import { User, userShecma } from 'src/schemas/user.schema';
         schema: userShecma
       }
         
-    ])
-
+    ]),
+    
     ],
     controllers: [UserController],
     providers: [UserService],

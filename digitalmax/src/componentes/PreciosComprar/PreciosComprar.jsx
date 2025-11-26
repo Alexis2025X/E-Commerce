@@ -7,7 +7,7 @@ import StardCalificacion from '../StardCalificacion/StardCalificacion';
 import EstadoProducto from '../EstadoProducto/EstadoProducto';
 import { useState } from 'react';
 
-import { agregarItemCarrito } from '../../API/UserAPI';
+import { agregarItemCarrito,obtenerTokenUserLogin } from '../../API/UserAPI';
 
 function ProductoStock(prop) {
     if (prop.stock > 10) {
@@ -27,7 +27,8 @@ function ProductoDescripcion(prop) {
  async  function handleClickAgregarCarrito(){
     try {
      const productoCantidad = document.getElementById('productoCantidadSelect').innerText
-        const user = localStorage.getItem("user")
+        let user = ""
+               await obtenerTokenUserLogin().then(res => res.json()).then((data) => user = data.iduser)
      let datosCarrito = {
             idProducto: prop.producID,
             cantSelect: parseInt(productoCantidad)

@@ -11,7 +11,7 @@ import StardCalificacion from "../StardCalificacion/StardCalificacion";
 import ButtonActionProduc from "../ButtonActionProduc/ButtonActionProduc";
 
 import { PostResena } from "../../API/ProductosAPI";
-
+import { obtenerTokenUserLogin } from "../../API/UserAPI";
 export function calcularPrecioDescuento(precio, descuento) {
   return (precio - (precio * descuento) / 100).toFixed(2);
 }
@@ -34,6 +34,8 @@ function ProductoDetallado(props) {
 
   const [calidicacionReseña, setCalificacionReseña] = useState(0);
 
+  const [data_envio, setDataEvio] = useState({})
+
   function handleCambioCal(event) {
     let nuevaCal = event.target.id;
     if (nuevaCal != "") {
@@ -41,36 +43,7 @@ function ProductoDetallado(props) {
     }
   }
 
-  function dataReseña() {
-    const tituloReseña = document.getElementById("tituloReseña").value;
-    const description = document.getElementById("DescripcionReseña").value;
-    const user = localStorage.getItem("user");
-    const username = localStorage.getItem("username");
-    const data = {
-      userReseña: user,
-      userNameReseña: username,
-      titulo: tituloReseña,
-      descripcion: description,
-      valoracion: parseInt(calidicacionReseña),
-    };
-    if(data.userReseña == "" ||
-      data.userNameReseña == ""){
-        alert("Requiere iniciar sesion para hacer una reseña")
-        return
-    }
-    if(
-      data.userReseña == "" ||
-      data.userNameReseña == "" ||
-      data.titulo == "" ||
-      data.descripcion == "" ||
-      data.valoracion == "" 
-    ){
-        alert("Rellene todos los datos para seguir con la reseña")
-        return
-    }
-    limpiezaData()
-    return data;
-  }
+
 
   function handleZoomImg(srcImage) {
     setimagensrc(srcImage);
@@ -91,18 +64,49 @@ function ProductoDetallado(props) {
 
   async function handlClickreseñaEnvio() {
     try {
-      const data_envio = dataReseña();
-      if(data_envio == undefined || data_envio == {}){
+       const tituloReseña = document.getElementById("tituloReseña").value;
+    const description = document.getElementById("DescripcionReseña").value;
+    let user = ""
+    let username =""
+       await obtenerTokenUserLogin().then(res => res.json()).then((data) => {user = data.iduser
+        username = data.nombre
+       })
+
+
+    const data = {
+      userReseña: user,
+      userNameReseña: username,
+      titulo: tituloReseña,
+      descripcion: description,
+      valoracion: parseInt(calidicacionReseña),
+    };
+
+    if(data.userReseña == "" ||
+      data.userNameReseña == ""){
+        alert("Requiere iniciar sesion para hacer una reseña")
         return
-      }
+    }
+    if(
+      data.userReseña == "" ||
+      data.userNameReseña == "" ||
+      data.titulo == "" ||
+      data.descripcion == "" ||
+      data.valoracion == "" 
+    ){
+        alert("Rellene todos los datos para seguir con la reseña")
+        return
+    }
+   
       const idProduc = props.productID;
-      const respuesta = await PostResena(idProduc, data_envio);
+      
+    const res =   await PostResena(idProduc, data);
+      limpiezaData()
+    console.log(res)
       alert("La reseña se envio correctamente");
-      console.log(idProduc);
-      console.log(data_envio);
-      console.log(respuesta);
-    } catch {
+     
+    } catch(error) {
       alert("Error al enviar la reseña");
+      console.error(error)
     }
   }
   return (
