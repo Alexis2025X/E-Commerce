@@ -46,7 +46,7 @@ function ProductoDescripcion(prop) {
             //alert("Error al guardar el producto" + error)
             Swal.fire({
                 title: "Error al agregar el producto al carrito",
-                text: "Intentelo nuevamente"+ error,
+                text: "Ocurrio un error, intentelo nuevamente: "+ error,
                 icon: "error",
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "Aceptar"

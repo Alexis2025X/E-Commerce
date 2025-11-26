@@ -97,7 +97,7 @@ function FrameAgregarProducto() {
       //alert("Error al crear el producto intentelo nuevamente");
       Swal.fire({
         title: "Error al crear el producto",
-        text: "Intentelo nuevamente",
+        text: "Ocurrio un error, intentelo nuevamente: " + error,
         icon: "error",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Aceptar"

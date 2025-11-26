@@ -73,11 +73,12 @@ function FormCrearCuenta() {
                 //alert("Error al crear su usuario intentelo nuevamente")
                 Swal.fire({
                     title: "Error al crear su usuario",
-                    text: "Intentelo nuevamente",
+                    text: "Ocurrio un error, intentelo nuevamente: " + error,
                     icon: "error",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "Aceptar"
                 });
+                
             }
 
 

@@ -71,8 +71,16 @@ function LoginLayout() {
 
 
         } catch (error) {
-            alert("Contraeña y/o usuario incorrectos")
-            console.error('Contraeña y/o usuario incorrectos', error)
+            //alert("Contraeña y/o usuario incorrectos")
+
+            //console.error('Contraeña y/o usuario incorrectos', error)
+            Swal.fire({
+                title: "Acceso denegado",
+                text: "Ocurrio un error: " + error,
+                icon: "error",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Aceptar"
+            });
         }
     }
 

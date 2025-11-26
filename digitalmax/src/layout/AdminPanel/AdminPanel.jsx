@@ -3,10 +3,12 @@ import './AdminPanel.css'
 import logo_digitalmax  from '../../img/logo_transparente.png'
 import FrameBienvenida from "../../componentes/FrameBienvenida/FrameBienvenida"
 import FrameAgregarProducto from "../../componentes/FrameAgregarProducto/FrameAgregarProducto"
+import FrameGestionarCategoriaProduc from "../../componentes/FrameGestionarCategoriaProduc/FrameGestionarCategoriaProduc"
 import productosLogo from '../../assets/img/productosAdminIcon.png'
 import pedidosLogo from '../../assets/img/pedidosAdminIcon.png'
 import clientesLogo from '../../assets/img/clientesAdminIcon.png'
 import HeaderAdmin from '../../componentes/HeaderAdmin/HeaderAdmin'
+import FrameGestionarProducto from "../../componentes/FrameGestionarProducto/FrameGestionarProducto"
 
 import { useState } from "react"
 function AdminPanel(){
@@ -29,6 +31,11 @@ function AdminPanel(){
             case  "Agregar Producto":
                
                 SetFrame( <FrameAgregarProducto/>)
+            break
+            case  "Gestionar Producto":
+               
+                SetFrame( <FrameGestionarCategoriaProduc/>)
+                //SetFrame( <FrameGestionarProducto/>)
             break
             
             

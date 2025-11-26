@@ -40,7 +40,14 @@ function CarritoItem(
                 confirmButtonText: "Aceptar"
             });
         } catch (error) {
-            console.error(error)
+            //console.error(error)
+            Swal.fire({
+                title: "Error al eliminar el producto del carrito",
+                text: "Ocurrio un error, intentelo nuevamente: " + error,
+                icon: "error",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Aceptar"
+            });
         }
         location.reload();
     }

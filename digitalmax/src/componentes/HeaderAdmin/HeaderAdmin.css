@@ -13,6 +13,7 @@ position: fixed;
     color: #fffff0;
     text-align: center;
     height: 9%;
+    z-index: 1;
 }
 .headerComponentAdmin>div:first-child h2 {/*Contenedor h2 */
     margin: 5px;

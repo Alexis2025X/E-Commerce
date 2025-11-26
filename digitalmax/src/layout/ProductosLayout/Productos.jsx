@@ -18,8 +18,6 @@ import cables from '../../assets/img/cables.png'
 import seguridad from '../../assets/img/seguridad.png'
 import casa_oficina from '../../assets/img/casa_oficina.png'
 import redes from '../../assets/img/redes.png'
-import DetallesLayout from '../DetallesLayout/DetallesLayout'
-import HamburguerMenu from '../../componentes/HamburguerMenu/HamburguerMenu'
 import ChatButtons from '../../componentes/ChatButtons/ChatButtons';
 // const [productos, setProductos] = useState([])
 
