@@ -1,0 +1,52 @@
+.containerButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ChatBotButton {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0066ff;
+    /* background-color: #000000; */
+    border-radius: 45px;
+    color: #fffff0;
+    font-size: 1rem;
+}
+
+.WhatsappButtonMobile {
+
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #0066ff; */
+    background-color: #2eef66;
+    border-radius: 45px;
+    color: #fffff0;
+    font-size: 1rem;
+}
+
+.ChatBotButton:hover {
+    cursor: pointer;
+}
+
+.WhatsappButtonMobile:hover {
+    cursor: pointer;
+}
+
+.ChatBotButton>img {
+    max-width: 70%;
+    max-height: 70%;
+}
+
+.WhatsappButtonMobile>img {
+    max-width: 70%;
+    max-height: 70%;
+}

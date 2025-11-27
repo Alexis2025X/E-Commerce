@@ -38,13 +38,15 @@
     margin-top: 10px;
 }
 .headerComponent>div:nth-child(2) input{
-    width: 80%;
+    width: 100%;
+    /* width: 80%; */
     height: 40px;
     background: #fffff0;
     /* border-radius: 16px; */
     border-radius: 28px;
     border: none;
     outline: none;
+    padding-left: 15px;
     /* box-shadow: 1px 2px 10px #353434; */
 }
 .headerComponent>div:last-child{
@@ -149,7 +151,7 @@
 }
 @media (width < 600px){
     .headerComponent>div:last-child{
-        min-width: 50%;
+        /* min-width: 50%; */
         justify-content: space-evenly;
     }
     .contentIconColor{
@@ -171,7 +173,7 @@
     .headerComponent>div:first-child img{
         margin-top: 10px;
         margin-left: 10px;
-         width: 40px;
+        width: 40px;
         height: 40px;
     }
     .headerComponent>div:last-child img{

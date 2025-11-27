@@ -13,6 +13,7 @@ position: fixed;
     color: #fffff0;
     text-align: center;
     height: 9%;
+    z-index: 1;
 }
 .headerComponentAdmin>div:first-child h2 {/*Contenedor h2 */
     margin: 5px;
@@ -35,7 +36,7 @@ position: fixed;
     }
 
     .headerComponent>div:last-child {/*Contenedor imagen y h2*/
-        width: 501px;
+        /* width: 501px; */
     }
 
     .headerComponent>div:first-child img {

@@ -1,6 +1,5 @@
 .contenedorPadreLogin{
     width: 100vw;
-    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,14 +8,13 @@
 }
 
 .contenedorPadreLogin>.LoginContent{ 
-    max-width: 1200px;
-    min-width: 80vw;
-    width: 30%;
+    max-width: 700px;
+    width: 360px;
     margin-top: 20px;
     border: 2px solid #0066ff;
     border-radius: 60px;
     background-image: url('../../img/logo_transparente.png');
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: 50% 55%;
     background-size: 80%;
 }
