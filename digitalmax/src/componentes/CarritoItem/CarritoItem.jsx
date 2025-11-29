@@ -11,7 +11,7 @@ import { eliminarItemCarritoUser } from '../../API/UserAPI';
 import Swal from 'sweetalert2';
 function CarritoItem(
     {
-        title, descripcion, precio, stock, descuento, cantidadSelect, nameItem, productoCar
+        title,descripcion,precio,stock,descuento,cantidadSelect,nameItem,productoCar,User
     }
 ) {
     let precioDescuento = calcularPrecioDescuento(parseFloat(precio), parseFloat(descuento))
@@ -58,8 +58,8 @@ function CarritoItem(
     }
     async function eliminarItemCarrito() {
         try {
-            let user = localStorage.getItem("user")
-            const respuestaActualizacion = await eliminarItemCarritoUser(user, nameItem)
+          
+            const respuestaActualizacion = await eliminarItemCarritoUser(User, nameItem)
             //alert("Eliminado")
             // Swal.fire({
             //     title: "Alerta",
@@ -100,7 +100,7 @@ function CarritoItem(
             <td>{title}</td>
             <td>{descripcion}</td>
             <td><span>${parseFloat(precioDescuento).toFixed(2)}</span><p>${parseFloat(precio).toFixed(2)}</p></td>
-            <td className='cellBtn'><ButtonCantProduct productoCar={productoCar} idProducto={nameItem} CantInicial={cantidadSelect} Event={seteoTotal} carritoBtnCant={"CarritoCantbtn"} stock={parseInt(stock)} /></td>
+            <td className='cellBtn'><ButtonCantProduct User ={User}  productoCar = {productoCar} idProducto = {nameItem} CantInicial = {cantidadSelect}  Event = {seteoTotal} carritoBtnCant= {"CarritoCantbtn"} stock = {parseInt(stock)}/></td>
             <td>${parseFloat(total)}</td>
             <td className='cellBtn'><ButtonActionProduc nameItem={nameItem} status={"CarritoCompraBTN"} text={"Eliminar"} Click={confirmacionEliminacion} /></td>
         </tr>

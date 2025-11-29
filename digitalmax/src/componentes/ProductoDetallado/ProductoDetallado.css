@@ -48,9 +48,7 @@
     width: 275px;
     cursor: pointer;
 }
-.contentDescripcion >.imgProducto:last-child{
-    background-color: red;
-}
+
 .contentImageSec{
     width: 100px;
     height: 100px;
@@ -100,20 +98,88 @@
 .contentEspecificaciones{
     margin-left: 10px;
     margin-right: 10px;
+
 }
 
 .contentReseña{
     height: fit-content;
     margin-left: 10px;
     margin-right: 10px;
+    width: 55%;
+}
+.ContenedorReseña{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
 }
 .contentReseña>div {
-    border: 1px solid #7D7D7D;
-    /* background-color: #f4f4f4; */
-    background-color: rgba(125, 125, 125, 0.4667);
+    background-color: transparent;
+    border: 0px;
     width: 100%;
     border-radius: 10px;
-    /* margin-top: -20px; */
+}
+.contentReseñaText{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.createReseña{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    height: 50vh;
+    top: 40%;
+    right: 2%;
+    background-color: #F4F4F4;
+    border: 1px solid #7D7D7D;
+
+    border-radius: 16px;
+    overflow: hidden;
+}
+.contentStartReseña{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 15%;
+
+}
+.contentInput{
+    width: 80%;
+    height: 30%;
+    border: 1px solid #7D7D7D;
+    outline: none;
+    border-radius:16px ;
+    padding: 5px;
+    resize: none;
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+}
+.contentInput div{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+.contentInput div:first-child {
+    border-bottom: 2px solid black;
+}
+
+
+.contentInput div label{
+    padding: 1%;
+    min-width: 40%;
+}
+.contentInput div input{
+    max-width: 50%;
+    background: transparent;
+    border: 0px;
+    outline: none;
+
+
 }
 
 @media (width < 500px) {
@@ -126,9 +192,13 @@
         height: 100%;
     }
 
-    /* .contentReseña {
-        width: 70vw;
-    } */
+    .contentReseña{
+        width: 90%;
+        margin-bottom: 30vh;
+    }
+    .createReseña{
+        width: 80vw;
+    }
 
     .contentDetalles {
         margin-bottom: 30px;
@@ -148,11 +218,6 @@
     .contentDetalles>.imgProducto{
         margin-left: 100px;
     }
-    .contentDetalles>div>img {
-
-        /* height: 50%; */
-    }
-
     .contentDetalles {
         margin-bottom: -10px;
         margin-left: 90px;
@@ -170,5 +235,8 @@
         margin-left: 105px;
         margin-right: 105px;
 }
+ .createReseña{
+        width: 30vw;
+    }
 
 }

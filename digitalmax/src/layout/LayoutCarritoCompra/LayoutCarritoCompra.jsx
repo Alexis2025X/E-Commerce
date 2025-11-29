@@ -3,7 +3,8 @@ import '../LayoutCarritoCompra/LayoutCarritoCompra.css'
 import CarritoItem from '../../componentes/CarritoItem/CarritoItem';
 import { useState, useEffect, useRef } from 'react';
 import { obtenerProducto } from '../../API/ProductosAPI';
-import { obtenerItemCarrito } from '../../API/UserAPI';
+import { obtenerTokenUserLogin, obtenerItemCarrito} from '../../API/UserAPI';
+import { data } from 'react-router-dom';
 
 
 
@@ -78,44 +79,45 @@ function LayoutCarritoCompra() {
     }
   }
 
+    
 
-
-  return (
-    <div className='layoutCarritoCompra'>
-      <h2>MI CARRETILLA</h2>
-      <div className='contenedorItemCarrito'>
-        <table>
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Total</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody className='bodyTableCarrito'>
-
-            {productsItems.map((product, index) => (
-              <CarritoItem
-
-                title={product.nombre}
-                descripcion={product.descripcion}
-                precio={product.precio}
-                stock={product.stock}
-                descuento={product.descuento}
-                cantidadSelect={products[index].cantSelect}
-                nameItem={products[index]._id}
-                productoCar={product._id}
-              />
-            ))}
-            {Loading(loading)}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
+    return(
+        <div className='layoutCarritoCompra'>
+            <h2>MI CARRETILLA</h2>
+            <div className='contenedorItemCarrito'>
+               <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody className='bodyTableCarrito'>
+                   
+                   {productsItems.map((product, index) => (
+                    <CarritoItem 
+                   
+                    title = {product.nombre}
+                    descripcion= {product.descripcion}
+                    precio= {product.precio}
+                    stock= {product.stock}
+                    descuento= {product.descuento}
+                    cantidadSelect= {products[index].cantSelect}
+                    nameItem = {products[index]._id}
+                    productoCar = {product._id}
+                    User = {userCarrito}
+                    />
+                    ))}
+      {Loading(loading)}
+                </tbody>
+               </table>
+            </div>
+        </div>        
+    )
 }
 
 export default LayoutCarritoCompra;

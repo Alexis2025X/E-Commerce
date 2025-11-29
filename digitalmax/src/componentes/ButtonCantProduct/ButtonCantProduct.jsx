@@ -7,7 +7,7 @@ function ButtonDetallesProduct(prop){
     const [countProduct, setCountProduct] = useState(prop.CantInicial == "" || prop.CantInicial == undefined ? 1 : prop.CantInicial );
    
    async function conteo (signo){
-        let user = localStorage.getItem('user')
+       const user = prop.User
 
         if(signo === "+"){
             if(countProduct < prop.stock){

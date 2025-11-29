@@ -143,10 +143,10 @@ useEffect(() => {
       </div>
       <ChatButtons/>
       <div className="contentProduct">
-      {/*resultados.map((product) => (
-      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
-      ))*/}
-      {mostrarProductos(resultados)}
+      {products.map((product) => (
+      <CardProduct  key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+      ))}
+      {Loading(loading)}
       </div>
     </main>
     </>

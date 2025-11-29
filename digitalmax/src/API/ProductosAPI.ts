@@ -41,3 +41,27 @@ export const obtenerProducto = async (id: string) =>
 
 
     export const userStats = "/app/admin"
+
+
+
+
+
+
+    interface dataReseñaNew{
+      userReseña: string,
+      userNameReseña: string,
+      titulo: string,
+      descripcion:string,
+      valoracion: number
+    }
+    export const PostResena = async (idProduct:string,dataresena:dataReseñaNew)=> {
+       fetch(`${API}/productos/${idProduct}/resena/`, {
+        method: "POST",
+        body: JSON.stringify(dataresena),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+
+

@@ -4,8 +4,8 @@ import ButtonDetallesProduct from '../ButtonCantProduct/ButtonCantProduct';
 import ButtonActionProduc from '../ButtonActionProduc/ButtonActionProduc';
 import StardCalificacion from '../StardCalificacion/StardCalificacion';
 import EstadoProducto from '../EstadoProducto/EstadoProducto';
-
-
+import { useState } from 'react';
+import { agregarItemCarrito,obtenerTokenUserLogin } from '../../API/UserAPI';
 import { agregarItemCarrito } from '../../API/UserAPI';
 import Swal from 'sweetalert2';
 
@@ -23,17 +23,18 @@ function ProductoStock(prop) {
 
 
 function ProductoDescripcion(prop) {
-
+ async  function handleClickAgregarCarrito(){
+    try {
+    
     async function handleClickAgregarCarrito() {
         try {
-            const productoCantidad = document.getElementById('productoCantidadSelect').innerText
-            const user = localStorage.getItem("user")
-            let datosCarrito = {
-                idProducto: prop.producID,
-                cantSelect: parseInt(productoCantidad)
-            }
+             const productoCantidad = document.getElementById('productoCantidadSelect').innerText
+        let user = ""
+               await obtenerTokenUserLogin().then(res => res.json()).then((data) => user = data.iduser)
+     let datosCarrito = {
+            idProducto: prop.producID,
+            cantSelect: parseInt(productoCantidad)
             let res = await agregarItemCarrito(user, datosCarrito)
-            //alert("Producto guardado en el carrito")
             Swal.fire({
                 title: "Producto agregado al carrito",
                 text: "El producto ha sido guardado en el carrito correctamente",
@@ -42,7 +43,6 @@ function ProductoDescripcion(prop) {
                 confirmButtonText: "Aceptar"
             });
         } catch (error) {
-            //alert("Error al guardar el producto" + error)
             Swal.fire({
                 title: "Error al agregar el producto al carrito",
                 text: "Ocurrio un error, intentelo nuevamente: " + error,
@@ -54,10 +54,11 @@ function ProductoDescripcion(prop) {
         }
     }
 
+
     return (
 
         <div className='productDesContent'>
-            <StardCalificacion tamaño={20} />
+            <StardCalificacion tamaño={20} count = {prop.StardCalificacion} />
             <h2>
                 $ {prop.precioDescuento}
             </h2>

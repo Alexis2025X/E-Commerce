@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
+import { resena} from './productoReseña.schema';
 @Schema()
 export class Producto {
     @Prop({ required: true })
@@ -40,12 +40,17 @@ export class Producto {
      @Prop({ required: true })
     especificaciones: string;
 
-    
     @Prop({ required: true })
     detallesFisicos: string;
 
     @Prop({ required: true })
-  paisOrigen: string;
+    paisOrigen: string;
+
+    @Prop({ required: true })
+    valoracion: number;
+    
+    @Prop({ type: [resena] })
+      resena: resena[];
 
   @Prop({ required: true })
   valoracion: number;

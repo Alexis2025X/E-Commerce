@@ -7,3 +7,7 @@
 .StardContentView>ul>li{
     list-style: none;
 }
+.punteroTrue{
+    cursor: pointer;
+    gap: 5px;
+}

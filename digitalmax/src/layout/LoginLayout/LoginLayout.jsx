@@ -8,7 +8,7 @@ import { Buttons } from '../../componentes/ButtonLogin/Buttons';
 import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
-import { crearUser, obtenerUsers } from '../../API/UserAPI';
+import { obtenertoken } from '../../API/UserAPI';
 
 import { userStats } from '../../API/ProductosAPI';
 
@@ -18,20 +18,35 @@ import Swal from 'sweetalert2';
 function LoginLayout() {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     const navigateReguistre = useNavigate();
-    const handleAccessRegistroLogin = () => {
-        navigateReguistre('/CrearCuenta')
-    }
+        
+        const submitLogin = async () =>{
+            try {
+            const obtenCookie = await obtenertoken(dataLogin)
 
-    const [dataLogin, setDataLogin] = useState({
-        correo: '',
-        contraseña: ''
-    })
+            if(obtenCookie.status == 201){
+                navigateReguistre('/')
+            }else{
+                 alert("Usuario y/o contraseña incorrectos")
+            }
 
+            } catch (error) {
+                alert("Contraeña y/o usuario incorrectos")
+                console.error('Contraeña y/o usuario incorrectos', error)
+            }
+   const handleAccessRegistroLogin = () =>{
+            navigateReguistre('/')
+        }
+         
+        const[dataLogin, setDataLogin] = useState({
+            correo: '',
+            contraseña: ''
+        })
 
-    const handleChangeLogin = (event) => {
-        setDataLogin({ ...dataLogin, [event.target.name]: event.target.value });
-
-    }
+        
+        const handleChangeLogin = (event) => {
+            setDataLogin({...dataLogin, [event.target.name] : event.target.value});
+          
+        }
     const submitLogin = async () => {
         try {
             const res = await obtenerUsers(dataLogin).then(res => res.json()).then((data) => {
@@ -49,11 +64,9 @@ function LoginLayout() {
                         navigateReguistre(userStats)
                     } else {
                         navigateReguistre('/')
-                    }
-
-                } else {
-                    //alert("Contraeña y/o usuario incorrectos, acceso denegado")
-                    Swal.fire({
+                 }
+            }else{
+                  Swal.fire({
                         title: "Acceso denegado",
                         text: "Contraeña y/o usuario incorrectos",
                         icon: "error",
@@ -61,17 +74,14 @@ function LoginLayout() {
                         confirmButtonText: "Aceptar"
                     });
 
-                }
-
-            })
-
+            }
+            
 
 
+        
 
         } catch (error) {
-            //alert("Contraeña y/o usuario incorrectos")
 
-            //console.error('Contraeña y/o usuario incorrectos', error)
             Swal.fire({
                 title: "Acceso denegado",
                 text: "Ocurrio un error: " + error,
@@ -80,6 +90,7 @@ function LoginLayout() {
                 confirmButtonText: "Aceptar"
             });
         }
+    }
     }
 
 

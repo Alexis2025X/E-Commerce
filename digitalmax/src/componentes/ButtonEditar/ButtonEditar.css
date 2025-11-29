@@ -1,0 +1,12 @@
+.botonEdit{
+    max-width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.botonEdit>img{
+    max-width: 40%;
+    height: auto;
+}

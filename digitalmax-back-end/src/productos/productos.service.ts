@@ -4,7 +4,7 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Producto } from './schemas/productos.schema';
 import { Model } from 'mongoose';
-
+import { CreateReseña } from './dto/create-producto.dto';
 @Injectable()
 export class ProductosService {
   constructor(@InjectModel(Producto.name) private ProductoModel: Model <Producto>) {}
@@ -36,4 +36,23 @@ export class ProductosService {
   remove(id: string) {
     return this.ProductoModel.findByIdAndDelete(id).exec();
   }
+
+    async createitemResena(idProduct:string ,reseña:CreateReseña){
+      return this.ProductoModel.findByIdAndUpdate(
+          idProduct,
+          {
+              $push: {
+                  resena:{
+                      userReseña: reseña.userReseña,
+                      userNameReseña: reseña.userNameReseña,
+                      titulo:reseña.titulo,
+                      descripcion: reseña.descripcion,
+                      valoracion: reseña.valoracion
+                  }
+              },
+          },
+          {new:true}
+      )
+  
+    }
 }

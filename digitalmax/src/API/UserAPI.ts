@@ -23,11 +23,31 @@ export const crearUser = async (datos: datasUser) =>
         correo: string;
         contraseña:string;
     }
-    
+    export const obtenertoken = async (datos: datosLoginUser) => 
+    fetch(`${API}/user/login`,{
+        method: 'POST',
+        credentials: "include",
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos),
+        
+    })
+
+export const obtenerTokenUserLogin = async () =>{
+   return fetch(`${API}/user/login/token`, {
+     method: 'GET',
+     credentials: 'include'
+     });
+   
+
+}
+
 export const obtenerUsers = async (datos: datosLoginUser) => 
     fetch(`${API}/user/${datos.correo}`, {
         method: 'GET'
 })
+
 
 export const obtenerUserID = async (id:string) => 
     fetch(`${API}/user/${id}`, {
@@ -38,6 +58,8 @@ export const obtenerUserID = async (id:string) =>
         idProducto: string,
         cantSelect: number
     }
+
+    
 
 export const agregarItemCarrito = async (idUser: string, dataProduct:dataCarrito) =>{
     fetch(`${API}/user/${idUser}/carrito/`,{
