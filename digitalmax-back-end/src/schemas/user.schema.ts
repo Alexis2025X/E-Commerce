@@ -1,41 +1,40 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { carrito } from "./carrito.schema";
 @Schema({
-    timestamps:true
+    timestamps: true
 })
 export class User {
-    
+
     @Prop({
-        required:true, trim:true
+        required: true, trim: true
     })
     nombre: string;
-    
+
     @Prop({
-        required:true, trim:true
+        required: true, trim: true
     })
-    
+
     telefono: string;
-    
+
     @Prop({
-        required:true, trim:true, unique:true
+        required: true, trim: true, unique: true
     })
-    
+
     correo: string;
-    
+
     @Prop({
-        required:true
+        required: true
     })
-    
-    contraseña:string;
-    
+
+    contraseña: string;
+
     @Prop({
-        required:true, unique:false ,default:'inactive'
+        required: true, unique: false, default: 'inactive'
     })
     status: string;
-    
-   @Prop({ type: [carrito] })
-  carrito: carrito[];
-   
+
+    @Prop({ type: [carrito] })
+    carrito: carrito[];
 }
 
 export const userShecma = SchemaFactory.createForClass(User);

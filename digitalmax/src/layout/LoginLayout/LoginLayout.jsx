@@ -1,5 +1,4 @@
 import '../LoginLayout/LoginLayout.css'
-import digitalMax from '../../assets/img/Logo_digitalmax.png'
 import { InputForm } from '../../componentes/InputForm/InputForm';
 import { SocialLoginButton } from '../../componentes/SocialLoginButton/SocialLoginButton';
 import icon_Facebook from '../../assets/img/icon_Facebook.png'
@@ -35,7 +34,6 @@ function LoginLayout() {
     }
     const submitLogin = async () => {
         try {
-            const datos = {}
             const res = await obtenerUsers(dataLogin).then(res => res.json()).then((data) => {
                 if (data.contraseña == dataLogin.contraseña) {
                     //alert("BIENVENIDO A DIGITALMAX")

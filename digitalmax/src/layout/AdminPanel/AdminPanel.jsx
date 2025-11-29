@@ -21,7 +21,7 @@ function AdminPanel() {
         cambioMenu()
 
     }
-    
+
 
     const [Frame, SetFrame] = useState(<FrameBienvenida subtitle={"Bienvenid@ "} subtitle2={"a la Administracion de"} title={"DigitalMax"} />)
 
@@ -33,13 +33,16 @@ function AdminPanel() {
                 SetFrame(<FrameAgregarProducto />)
                 break
             case "Gestionar Producto":
-                const regresar = false
-                //
-               
-                SetFrame(<FrameGestionarCategoriaProduc atras={regresar} />)
+                //const regresar = false
+                //SetFrame(<FrameGestionarCategoriaProduc atras={regresar} />)
+                //break //POR SI ACASO
+                {
+                    const regresar = false
 
-                //SetFrame( <FrameGestionarProducto/>)
-                break
+                    SetFrame(<FrameGestionarCategoriaProduc atras={regresar} />)
+                    //SetFrame( <FrameGestionarProducto/>)
+                    break
+                }
 
 
             default:

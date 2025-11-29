@@ -9,12 +9,12 @@ import {
 export class idProductoUnico implements ValidatorConstraintInterface {
   validate(array: any[], args: any) {
     if (!Array.isArray(array)) {
-      return false; 
+      return false;
     }
 
     const property = args.constraints[0];
     const values = array.map(item => item[property]);
-    
+
     return new Set(values).size === array.length;
   }
 

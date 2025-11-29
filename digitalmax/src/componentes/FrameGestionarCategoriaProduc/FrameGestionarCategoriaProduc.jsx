@@ -8,8 +8,6 @@ import casa_oficina from '../../assets/img/casa_oficina.png'
 import redes from '../../assets/img/redes.png'
 import CardCatConteinerAdmin from "../CardCategoriaAdmin/CardCategoriaAdmin";
 import { useState } from "react";
-import FrameAgregarProducto from "../FrameAgregarProducto/FrameAgregarProducto";
-import { useNavigate } from "react-router-dom";
 import FrameGestionarProducto from "../FrameGestionarProducto/FrameGestionarProducto";
 
 function FrameGestionarCategoriaProduc(prop) {
@@ -17,7 +15,7 @@ function FrameGestionarCategoriaProduc(prop) {
     const [seccionProducto, setseccionProducto] = useState(false);
     const [titulo, setTitulo] = useState("")
     const [categoria, setCategoria] = useState("")
-    
+
 
     //setseccionProducto(prop.estado);
     function handleCambioFrame(event) {

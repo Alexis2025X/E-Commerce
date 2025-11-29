@@ -11,14 +11,8 @@ function Header() {
     setMenu(!menu)
   }
   const navigate = useNavigate();
-  const handleAccessRegistro = () => {
-    navigate('')
-    setMenu(false)
-  }
-  const handleAccessLogin = () => {
-    navigate('/Login')
-    setMenu(false)
-  }
+
+
   const handleAccessProduct = () => {
     navigate('/app/productos')
     setMenu(false)

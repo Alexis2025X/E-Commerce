@@ -45,13 +45,10 @@ export class Producto {
     detallesFisicos: string;
 
     @Prop({ required: true })
-    paisOrigen: string;
+  paisOrigen: string;
 
-
-
-    @Prop({ required: true })
-    valoracion: number;
-
+  @Prop({ required: true })
+  valoracion: number;
 }
 
 export const ProductoSchema = SchemaFactory.createForClass(Producto);

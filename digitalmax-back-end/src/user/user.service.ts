@@ -10,7 +10,7 @@ import { User } from 'src/schemas/user.schema';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<User>) { }
 
   finALL() {
     return this.userModel.find();
@@ -49,35 +49,35 @@ export class UserService {
     }
   }
 
-  async createitemCar(idUser:string ,carrito:CreateCarrito){
+  async createitemCar(idUser: string, carrito: CreateCarrito) {
     return this.userModel.findByIdAndUpdate(
-        idUser,
-        {
-            $push: {
-                carrito:{
-                    idProducto: carrito.idProducto,
-                    cantSelect: carrito.cantSelect
-                },
-            },
+      idUser,
+      {
+        $push: {
+          carrito: {
+            idProducto: carrito.idProducto,
+            cantSelect: carrito.cantSelect
+          },
         },
-        {new:true}
+      },
+      { new: true }
     )
 
   }
 
   async eliminarItemCarritoUser(iduser: string, idProduct: string) {
     return this.userModel.findByIdAndUpdate(
-        iduser,
-        {
-            $pull:{
-                carrito: {_id:idProduct},
-            },
-
+      iduser,
+      {
+        $pull: {
+          carrito: { _id: idProduct },
         },
-        
-        {new:true}
-    
-  );
+
+      },
+
+      { new: true }
+
+    );
   }
 
   async actualizarItemCarritoUser(
@@ -86,21 +86,20 @@ export class UserService {
     carrito: actualizaCarrito,
   ) {
 
-       return await  this.userModel.findByIdAndUpdate(
-        {_id:iduser},
-        {
-            $set:{
-            'carrito.$[elem].idProducto': carrito.idProducto,
-            'carrito.$[elem].cantSelect': carrito.cantSelect
-            }
-        },
-        {
-            arrayFilters:[{'elem._id': idProduct}],
-            new:true
+    return await this.userModel.findByIdAndUpdate(
+      { _id: iduser },
+      {
+        $set: {
+          'carrito.$[elem].idProducto': carrito.idProducto,
+          'carrito.$[elem].cantSelect': carrito.cantSelect
         }
+      },
+      {
+        arrayFilters: [{ 'elem._id': idProduct }],
+        new: true
+      }
 
-       ).exec();
-       
-    }  
+    ).exec();
+  }
 }
 

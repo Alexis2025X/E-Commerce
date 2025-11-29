@@ -3,10 +3,9 @@ import ProductoDescripcion from '../../componentes/ProductoDescripcion/ProductoD
 import PreciosComprar from '../../componentes/PreciosComprar/PreciosComprar';
 import '../ProductoDetallado/ProductoDetallado.css'
 import ReseñaProductDetalles from '../../componentes/ReseñaProductDetalles/ReseñaProductDetalles';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ZoomImage from '../ZoomImage/ZoomImage';
-const precioDescuento = 0;
-
+//const precioDescuento = 0;
 export function calcularPrecioDescuento(precio, descuento) {
     return (precio - (precio * descuento) / 100).toFixed(2);
 }

@@ -31,5 +31,4 @@ export class CreateUserDTO {
         @ValidateNested()
         @Type(() => CreateCarrito)
         carrito: CreateCarrito
-        
 }

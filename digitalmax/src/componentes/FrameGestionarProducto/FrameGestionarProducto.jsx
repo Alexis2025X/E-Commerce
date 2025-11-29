@@ -1,12 +1,4 @@
 import "./FrameGestionarProducto.css";
-import computo from '../../assets/img/nuevo.png'
-import telefono from '../../assets/img/dispositivos_moviles.png'
-import audio from '../../assets/img/audio.png'
-import cables from '../../assets/img/cables.png'
-import seguridad from '../../assets/img/seguridad.png'
-import casa_oficina from '../../assets/img/casa_oficina.png'
-import redes from '../../assets/img/redes.png'
-import CardCatConteinerAdmin from "../CardCategoriaAdmin/CardCategoriaAdmin";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { obtenerProductos } from "../../API/ProductosAPI";
@@ -30,7 +22,7 @@ function FrameGestionarProducto(prop) {
         
         switch (seleccion) {
             case "regresar":
-                console.log("Regresando a gestionar categorias");
+                //console.log("Regresando a gestionar categorias");
                 setseccionProducto(false);
                 break;
         }
@@ -131,7 +123,9 @@ function FrameGestionarProducto(prop) {
             }
         };
         fetchProducts();
-    }, []);
+    }, [productoCategory]);
+    //DEJE ESTE CÓDIGO COMENTADO POR SI ACASO
+    //}, []);
     const Loading = (loading) => {
         if (loading === true) {
             return <div>Cargando productos...</div>;
