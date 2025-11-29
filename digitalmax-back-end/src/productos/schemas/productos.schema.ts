@@ -40,14 +40,11 @@ export class Producto {
      @Prop({ required: true })
     especificaciones: string;
 
-    
     @Prop({ required: true })
     detallesFisicos: string;
 
     @Prop({ required: true })
     paisOrigen: string;
-
-
 
     @Prop({ required: true })
     valoracion: number;
@@ -55,6 +52,8 @@ export class Producto {
     @Prop({ type: [resena] })
       resena: resena[];
 
+  @Prop({ required: true })
+  valoracion: number;
 }
 
 export const ProductoSchema = SchemaFactory.createForClass(Producto);

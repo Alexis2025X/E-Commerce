@@ -1,4 +1,4 @@
-import iconStard from '../../assets/img/icon stard.svg'
+
 import './ProductoDescripcion.css'
 import IconoStard from '../../assets/img/Icon Stard';
 import ButtonDetallesProduct from '../ButtonCantProduct/ButtonCantProduct';

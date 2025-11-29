@@ -19,14 +19,13 @@ import { AppService } from './app.service';
     }),
     UserModule,
     ProductosModule],
-    controllers: [AppController],
-    providers: [AppService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 
-
 // @Module({
-//   imports: [ 
-    
+//   imports: [
+
 //     ConfigModule.forRoot({ isGlobal: true }),
 //     MongooseModule.forRootAsync({
 //       imports: [ConfigModule],

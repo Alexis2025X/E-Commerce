@@ -14,9 +14,7 @@ import Swal from 'sweetalert2';
 
 function FormCrearCuenta() {
     const navigate = useNavigate();
-    const handleLogin = () => {
-        navigate('/app/productos')
-    }
+
     const [dataRegistro, setData] = useState({
         nombre: '',
         telefono: '',
@@ -56,7 +54,7 @@ function FormCrearCuenta() {
             event.preventDefault();
             try {
                 const res = await crearUser(dataEnvio);
-                const data = res.json();
+                on();
                 if (res.status === 201) {
                     //alert("Usuario creado con éxito");
                     Swal.fire({

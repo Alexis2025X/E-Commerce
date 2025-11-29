@@ -1,6 +1,5 @@
-import iconStard from '../../assets/img/icon stard.svg'
+
 import './PreciosComprar.css'
-import IconoStard from '../../assets/img/Icon Stard';
 import ButtonDetallesProduct from '../ButtonCantProduct/ButtonCantProduct';
 import ButtonActionProduc from '../ButtonActionProduc/ButtonActionProduc';
 import StardCalificacion from '../StardCalificacion/StardCalificacion';
@@ -46,7 +45,7 @@ function ProductoDescripcion(prop) {
         } catch (error) {
             Swal.fire({
                 title: "Error al agregar el producto al carrito",
-                text: "Ocurrio un error, intentelo nuevamente: "+ error,
+                text: "Ocurrio un error, intentelo nuevamente: " + error,
                 icon: "error",
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "Aceptar"

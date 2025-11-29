@@ -27,18 +27,61 @@ function CarritoItem(
         }
 
     }
+    function confirmacionEliminacion() {
+        Swal.fire({
+            title: "Alerta",
+            text: "¿Esta seguro que desea eliminar el producto del carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, eliminalo"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                return eliminarItemCarrito();
+            } else {
+                Swal.fire({
+                    title: "Cancelado",
+                    text: "El producto no ha sido eliminado",
+                    icon: "info",
+                    confirmButtonColor: "#3085d6"
+                });
+            }
+        });
+    }
+    function mensaje() {
+        return Swal.fire({
+            title: "Producto eliminado del carrito",
+            text: "El producto ha sido eliminado correctamente",
+            icon: "success"
+        });
+    }
     async function eliminarItemCarrito() {
         try {
           
             const respuestaActualizacion = await eliminarItemCarritoUser(User, nameItem)
             //alert("Eliminado")
-            Swal.fire({
-                title: "Producto eliminado del carrito",
-                text: "El producto ha sido eliminado correctamente",
-                icon: "success",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "Aceptar"
-            });
+            // Swal.fire({
+            //     title: "Alerta",
+            //     text: "¿Esta seguro que desea eliminar el producto del carrito?",
+            //     icon: "warning",
+            //     showCancelButton: true,
+            //     confirmButtonColor: "#3085d6",
+            //     cancelButtonColor: "#d33",
+            //     confirmButtonText: "Yes, delete it!"
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            mensaje()
+
+            //     }
+            // });
+            // Swal.fire({
+            //     title: "Producto eliminado del carrito",
+            //     text: "El producto ha sido eliminado correctamente",
+            //     icon: "success",
+            //     confirmButtonColor: "#3085d6",
+            //     confirmButtonText: "Aceptar"
+            // });
         } catch (error) {
             //console.error(error)
             Swal.fire({
@@ -59,7 +102,7 @@ function CarritoItem(
             <td><span>${parseFloat(precioDescuento).toFixed(2)}</span><p>${parseFloat(precio).toFixed(2)}</p></td>
             <td className='cellBtn'><ButtonCantProduct User ={User}  productoCar = {productoCar} idProducto = {nameItem} CantInicial = {cantidadSelect}  Event = {seteoTotal} carritoBtnCant= {"CarritoCantbtn"} stock = {parseInt(stock)}/></td>
             <td>${parseFloat(total)}</td>
-            <td className='cellBtn'><ButtonActionProduc nameItem={nameItem} status={"CarritoCompraBTN"} text={"Eliminar"} Click={eliminarItemCarrito} /></td>
+            <td className='cellBtn'><ButtonActionProduc nameItem={nameItem} status={"CarritoCompraBTN"} text={"Eliminar"} Click={confirmacionEliminacion} /></td>
         </tr>
     );
 }

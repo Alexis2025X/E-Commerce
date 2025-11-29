@@ -7,7 +7,6 @@ import imageCompression from 'browser-image-compression';
 import Swal from 'sweetalert2';
 
 function FrameAgregarProducto() {
-  const [textImg, setTextImage] = useState("");
 
   const [dataProduc, setDataProduct] = useState({
     nombre: "",
@@ -81,7 +80,7 @@ function FrameAgregarProducto() {
     event.preventDefault();
     try {
       const res = await crearProduct(dataProduc);
-      const data = res.json();
+
       if (res.status === 201) {
         //alert("Producto guardado con exito");
         Swal.fire({

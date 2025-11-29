@@ -1,26 +1,59 @@
 import "./FrameGestionarProducto.css";
-import computo from '../../assets/img/nuevo.png'
-import telefono from '../../assets/img/dispositivos_moviles.png'
-import audio from '../../assets/img/audio.png'
-import cables from '../../assets/img/cables.png'
-import seguridad from '../../assets/img/seguridad.png'
-import casa_oficina from '../../assets/img/casa_oficina.png'
-import redes from '../../assets/img/redes.png'
-import CardCatConteinerAdmin from "../CardCategoriaAdmin/CardCategoriaAdmin";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { obtenerProductos } from "../../API/ProductosAPI";
 import CardProductAdmin from "../CardProductAdmin/CardProductAdmin";
+import FrameGestionarCategoriaProduc from "../FrameGestionarCategoriaProduc/FrameGestionarCategoriaProduc";
+import flecha from '../../assets/img/flecha-izquierda.svg'
 
 
-function FrameGestionarProducto() {
+function FrameGestionarProducto(prop) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [seccionProducto, setseccionProducto] = useState(true);
     const navigate = useNavigate();
     const handleProducto = (id) => {
         navigate(`/app/productos/producto/dispositivos-moviles/${id}`)
         //navigate(`/app/productos/producto/Telefonos/${id}`)
     }
+    
+    function handleCambioFrame(event) {
+        const seleccion = event.target.dataset.action
+        
+        switch (seleccion) {
+            case "regresar":
+                //console.log("Regresando a gestionar categorias");
+                setseccionProducto(false);
+                break;
+        }
+    }
+
+    function mostrar() {
+
+        if (seccionProducto === false) {
+            return <FrameGestionarCategoriaProduc />
+        } else {
+            return <>
+                <main className='mainConteinerAdmin'>
+                    <div className="regresar" onClick={handleCambioFrame} data-action="regresar"><img src={flecha}/>Regresar</div>
+                    <h2 className='subtituloProductosAdmin'>{prop.titulo}</h2>
+                    <div>
+                        {Loading(loading)}
+                        {/* {sinResultados()} */}
+                    </div>
+                    <div className="contentProductAdmin">
+                        {
+                            // resultados.map((product) => (
+                            // <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+                            // ))
+                            mostrarProductos(products)
+                        }
+                    </div>
+                </main>
+            </>
+        }
+    }
+
     // const [search, setSearch] = useState("")
 
     // const searcher = (e) => {
@@ -46,44 +79,12 @@ function FrameGestionarProducto() {
     //         return <div className='resuls'>No hay resultados para su busqueda</div>;
     //     }
     // }
-    const seleccion = 0;
-    switch (seleccion) {
-        case "Dispositivos moviles":
-            console.log("Dispositivos moviles seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Dispositivos Moviles' || filtro.categoria === 'dispositivos moviles');
-            break
-        case "Computación":
-            console.log("Computación seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Computo' || filtro.categoria === 'computo');
-            break
-        case "Audio":
-            console.log("Audio seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Audio' || filtro.categoria === 'audio');
-            break
-        case "Cables":
-            console.log("Cables seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Cables' || filtro.categoria === 'cables');
-            break
-        case "Seguridad":
-            console.log("Seguridad seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Seguridad' || filtro.categoria === 'seguridad');
-            break
-        case "Casa y Oficina":
-            console.log("Casa y Oficina seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Casa y oficina' || filtro.categoria === 'casa y oficina');
-            break
-        case "Redes":
-            console.log("Redes seleccionado");
-            categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Redes' || filtro.categoria === 'redes');
-            break
-        default:
-    }
-
-
 
     function productoCategory(products) {
+        const categoria = prop.categoria;
+        console.log("Categoria en productoCategory:", categoria);
 
-        const categoriaSeccion = products.filter((filtro) => filtro.categoria === 'Dispositivos Moviles' || filtro.categoria === 'dispositivos moviles');
+        const categoriaSeccion = products.filter((filtro) => filtro.categoria === categoria || filtro.categoria == categoria);
         if (!categoriaSeccion || categoriaSeccion.length === 0) {
             console.log("No hay productos disponibles para filtrar.");
             return <div>No hay productos disponibles para filtrar.</div>;
@@ -122,7 +123,9 @@ function FrameGestionarProducto() {
             }
         };
         fetchProducts();
-    }, []);
+    }, [productoCategory]);
+    //DEJE ESTE CÓDIGO COMENTADO POR SI ACASO
+    //}, []);
     const Loading = (loading) => {
         if (loading === true) {
             return <div>Cargando productos...</div>;
@@ -131,25 +134,9 @@ function FrameGestionarProducto() {
     }
 
 
-    return (
-        <>
-            <main className='mainConteinerAdmin'>
-
-                <h2 className='subtituloProductosAdmin'>Holaa /Nombre/</h2>
-                <div>
-                    {Loading(loading)}
-                    {/* {sinResultados()} */}
-                </div>
-                <div className="contentProductAdmin">
-                    {
-                        // resultados.map((product) => (
-                        // <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
-                        // ))
-                        mostrarProductos(products)
-                    }
-                </div>
-            </main>
-        </>
+    return (<>
+        {mostrar()}
+    </>
     );
 }
 

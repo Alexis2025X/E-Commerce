@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Put, Param, Delete, ValidationPipe,ConflictException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Put,
+  Param,
+  Delete,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ProductosService } from './productos.service';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
@@ -23,7 +33,10 @@ export class ProductosController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body(new ValidationPipe()) updateProductoDto: UpdateProductoDto) {
+  update(
+    @Param('id') id: string,
+    @Body(new ValidationPipe()) updateProductoDto: UpdateProductoDto,
+  ) {
     return this.productosService.update(id, updateProductoDto);
   }
 

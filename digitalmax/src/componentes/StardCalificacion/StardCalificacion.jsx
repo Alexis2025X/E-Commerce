@@ -41,7 +41,7 @@ function StardCalificacion(props){
                <li><IconoStard ident = {5} event = {props.event} tamaño = {props.tamaño} color = {calvalue[4].strat} /></li>
             </ul> 
         </div>
-        
+
     );
 }
 

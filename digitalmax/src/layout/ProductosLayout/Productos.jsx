@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
-import reactLogo from '../../assets/react.svg'
-import viteLogo from '/vite.svg'
 import './Productos.css'
-
 import CardCategoria from '../../componentes/CardCategoria/CardCategoria'
-
 import CardProduct from '../../componentes/CardProduct/CardProduct'
-import ButtonContactUser from '../../componentes/ButtonContactUser/ButtonContactUser'
 import { useNavigate } from 'react-router-dom'
 import { obtenerProductos } from '../../API/ProductosAPI'
 import Header from '../../componentes/Header/Header'

@@ -8,13 +8,13 @@ import { CreateReseña } from './dto/create-producto.dto';
 @Injectable()
 export class ProductosService {
   constructor(@InjectModel(Producto.name) private ProductoModel: Model <Producto>) {}
-  
+
   create(createProductoDto: CreateProductoDto) {
     // const createdProducto = new this.ProductoModel(createProductoDto);
     // return createdProducto.save();
     return this.ProductoModel.create(createProductoDto);
   }
-    //return 'This action adds a new producto';
+  //return 'This action adds a new producto';
 
   findAll() {
     return this.ProductoModel.find().exec();
@@ -27,15 +27,14 @@ export class ProductosService {
   }
 
   update(id: string, updateProductoDto: UpdateProductoDto) {
-    // const updatedProducto = this.ProductoModel.findByIdAndUpdate(id, updateProductoDto);
-    // return updatedProducto;
-    //return `This action updates a #${id} producto`;
-    return this.ProductoModel.findByIdAndUpdate(id, updateProductoDto, { new: true, }).exec();
+    // return this.ProductoModel.findByIdAndUpdate(id, updateProductoDto, {
+    //   new: true,
+    // }).exec();
+      return this.ProductoModel.findByIdAndUpdate(id, updateProductoDto, { new: true, }).exec();
   }
 
   remove(id: string) {
     return this.ProductoModel.findByIdAndDelete(id).exec();
-    //return `This action removes a #${id} producto`;
   }
 
     async createitemResena(idProduct:string ,reseña:CreateReseña){
