@@ -12,95 +12,104 @@ import FrameAgregarProducto from "../FrameAgregarProducto/FrameAgregarProducto";
 import { useNavigate } from "react-router-dom";
 import FrameGestionarProducto from "../FrameGestionarProducto/FrameGestionarProducto";
 
-function FrameGestionarCategoriaProduc() {
-    // const [menuProducto, setMenu] = useState(false)
-    // const cambioMenu = () => {
-    //     setMenu(!menuProducto)
-    // }
-    // function handleClickMenuProductos() {
-    //     cambioMenu()
-    // }
-    const [Frame, SetFrame] = useState(<FrameGestionarCategoriaProduc />)
+function FrameGestionarCategoriaProduc(prop) {
+    //console.log("Estado recibido en FrameGestionarCategoriaProduc:", prop.estado);
+    const [seccionProducto, setseccionProducto] = useState(false);
+    const [titulo, setTitulo] = useState("")
+    const [categoria, setCategoria] = useState("")
+    
+
+    //setseccionProducto(prop.estado);
     function handleCambioFrame(event) {
         const seleccion = event.target.innerHTML
         switch (seleccion) {
+            case "Gestionar Producto":
+                console.log("Regresando a gestionar productos");
+                setseccionProducto(false);
+                setTitulo("");
+                setCategoria("");
+                break;
             case "Dispositivos moviles":
-                console.log("Dispositivos moviles seleccionado");
-                SetFrame(<FrameGestionarProducto/>)
-                break
+                setTitulo("Dispositivos Moviles");
+                setCategoria("Dispositivos Moviles");
+                setseccionProducto(true);
+                break;
+            //SetFrame(<FrameGestionarProducto/>)
+            //break
             case "Computación":
-                console.log("Computación seleccionado");
-                SetFrame(<FrameGestionarCategoriaProduc />)
-                break
+                setTitulo("Computo");
+                setCategoria("Computo");
+                setseccionProducto(true);
+                <div>Cargando...</div>
+                break;
+            //break
             case "Audio":
-                console.log("Audio seleccionado");
-                SetFrame(<FrameGestionarCategoriaProduc />)
-                break
+                setTitulo("Audio");
+                setCategoria("Audio");
+                setseccionProducto(true);
+                break;
+            //break
             case "Cables":
-                console.log("Cables seleccionado");
-                SetFrame(<FrameGestionarCategoriaProduc />)
-                break
+                setTitulo("Cables");
+                setCategoria("Cables");
+                setseccionProducto(true);
+                <div>Cargando...</div>
+                break;
+            //break
             case "Seguridad":
-                console.log("Seguridad seleccionado");
-                SetFrame(<FrameGestionarCategoriaProduc />)
-                break
+                setTitulo("Seguridad");
+                setCategoria("Seguridad");
+                setseccionProducto(true);
+                break;
+            //break
             case "Casa y Oficina":
-                console.log("Casa y Oficina seleccionado");
-                SetFrame(<FrameGestionarCategoriaProduc />)
-                break
+                setTitulo("Casa y Oficina");
+                setCategoria("Casa y Oficina");
+                setseccionProducto(true);
+                break;
+            //break
             case "Redes":
-                console.log("Redes seleccionado");
-                SetFrame(<FrameGestionarCategoriaProduc />)
-                break
+                setTitulo("Redes");
+                setCategoria("Redes");
+                setseccionProducto(true);
+                <div>Cargando...</div>
+                break;
+            //break
 
             default:
-                SetFrame(<FrameGestionarCategoriaProduc />)
+                setseccionProducto(prop.atras);
+                setTitulo("");
+                setCategoria("");
 
         }
-        //setMenu()
-
-    }
-    const categoriaTelefono = () => {
-        //SetFrame( <FrameGestionarCategoriaProduc/>)
-    }
-    const categoriaComputadora = () => {
-        navigate(`/computo-admin`)
-    }
-    const marca = () => {
-        navigate(`/marcas-admin`)
-    }
-    const categoriaAudio = () => {
-        navigate(`/audio-admin`)
-    }
-    const categoriaCables = () => {
-        navigate(`/cables-admin`)
-    }
-    const categoriaSeguridad = () => {
-        navigate(`/seguridad-admin`)
-    }
-    const categoriaCasa_oficina = () => {
-        navigate(`/casa-oficina-admin`)
-    }
-    const categoriaRedes = () => {
-        navigate(`/redes-admin`)
     }
 
+    function mostrarFrame(Titulo, Categoria) {
+        if (seccionProducto === true) {
+            <div>Cargando productos....</div>
+            return <FrameGestionarProducto titulo={Titulo} categoria={Categoria} regresar={prop.atras} />
+        } else {
+            //console.log(seccionProducto);
+            return <>
+                <main className='mainConteiner-admin'>
+                    <h2 className="titleGestionar">Gestionar productos</h2>
+                    <div className="contentCat-admin">
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={telefono} alt="Dispositivos moviles" />
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={computo} alt="Computación" />
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={audio} alt='Audio' />
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={cables} alt='Cables' />
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={seguridad} alt='Seguridad' />
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={casa_oficina} alt='Casa y Oficina' />
+                        <CardCatConteinerAdmin link={handleCambioFrame} src={redes} alt='Redes' />
+                    </div>
+                </main>
+            </>
+        }
+    }
     return (
-        <main className='mainConteiner-admin'>
-            <h2 className="titleGestionar">Gestionar productos</h2>
-            <div className="contentCat-admin">
-                <CardCatConteinerAdmin link={handleCambioFrame} src={telefono} alt="Dispositivos moviles" />
-                <CardCatConteinerAdmin link={handleCambioFrame} src={computo} alt="Computación" />
-                <CardCatConteinerAdmin link={handleCambioFrame} src={audio} alt='Audio' />
-                <CardCatConteinerAdmin link={handleCambioFrame} src={cables} alt='Cables' />
-                <CardCatConteinerAdmin link={handleCambioFrame} src={seguridad} alt='Seguridad' />
-                <CardCatConteinerAdmin link={handleCambioFrame} src={casa_oficina} alt='Casa y Oficina' />
-                <CardCatConteinerAdmin link={handleCambioFrame} src={redes} alt='Redes' />
-
-                {/* {Frame}
-                 */}
-            </div>
-        </main>
+        <>
+            {mostrarFrame(titulo, categoria)}
+        </>
     );
 }
 
