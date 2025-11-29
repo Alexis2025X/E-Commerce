@@ -1,7 +1,7 @@
-export function Buttons({click, name, text}){
+export function Buttons({Click, name, text}){
     return(
         <>
-        <button onClick={click} className={name}>{text}</button>
+        <button onClick={Click} className={name}>{text}</button>
         </>
     )
 }

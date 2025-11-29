@@ -9,12 +9,12 @@
 
 .contenedorPadreLogin>.LoginContent{ 
     max-width: 700px;
-    width: 60%;
+    width: 360px;
     margin-top: 20px;
     border: 2px solid #0066ff;
     border-radius: 60px;
     background-image: url('../../img/logo_transparente.png');
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: 50% 55%;
     background-size: 80%;
 }
@@ -33,7 +33,7 @@
     font-size: 10px;
     text-align: right;
     position: absolute;
-    left: 58%;
+    left: 53%;
 }
 .contentSocialLogin{
     margin-top: 10%;
@@ -50,15 +50,21 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
     justify-content: center;
 }
 .contentAcciont>.LoginCreate_Clase{
     color: #0066ff;
     text-decoration-line: underline;
-    font-size: 10px; 
+    /* font-size: 10px;  */
     cursor: pointer;
+    font-size: 0.8rem;
+    font-family: var(--font-family-secundary);
+    color: var(--color-secundary);
+    align-self: center;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 
 @media (width < 600px) {

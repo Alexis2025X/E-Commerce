@@ -2,7 +2,12 @@
 .StardContentView>ul{
     display: flex;
     flex-direction: row;
+    padding: 0px;
 }
 .StardContentView>ul>li{
     list-style: none;
+}
+.punteroTrue{
+    cursor: pointer;
+    gap: 5px;
 }

@@ -19,7 +19,7 @@
 
 @media (width < 700px) {
     .hamburguerMenu{
-        top: 80px;
+        top: 45px;
         left: 10px;
     }
 }

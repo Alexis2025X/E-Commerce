@@ -7,7 +7,7 @@ function CardProduct(prop){
         <div onClick={prop.click} className='cardProduct'>
             <img src= {prop.src} alt= {prop.alt}/>
             <h2>{prop.description}</h2>
-            <span> USD{prop.precio}</span>
+            <span>USD {prop.precio}</span>
         </div>
     );
 }

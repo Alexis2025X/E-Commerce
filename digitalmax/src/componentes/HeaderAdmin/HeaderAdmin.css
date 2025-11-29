@@ -1,0 +1,59 @@
+.headerComponentAdmin>div{
+position: fixed;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    background-color: #0066ff;
+    width: 100vw;
+    max-width: 1800px;
+    top: 0px;
+    left: 0px;
+    color: #fffff0;
+    text-align: center;
+    height: 9%;
+    z-index: 1;
+}
+.headerComponentAdmin>div:first-child h2 {/*Contenedor h2 */
+    margin: 5px;
+    font-size: 2rem;
+    text-align: left;
+    align-items: center;
+}
+
+.headerComponentAdmin>div:first-child img {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+@media (width > 600px) {
+
+    .headerComponent>div:first-child h2 {
+        font-size: 2rem;
+        margin-top: 15px;
+    }
+
+    .headerComponent>div:last-child {/*Contenedor imagen y h2*/
+        /* width: 501px; */
+    }
+
+    .headerComponent>div:first-child img {
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .headerComponent>div:last-child img {
+        margin-top: 10px;
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .headerComponent>div:last-child img:last-child {
+        margin-top: -10px;
+    }
+}

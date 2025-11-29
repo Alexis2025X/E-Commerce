@@ -4,7 +4,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     color: #1d1d1d;
     font-size: 0.7rem;
@@ -20,6 +20,10 @@
     margin: 0px;
     padding: 0px;
     height: 50%;   
+    object-fit: contain;
+}
+.cardProduct>h2{
+    margin: 0%;
 }
 .cardProduct>span{
     color: #0066ff;

@@ -16,76 +16,89 @@ body{
     --font-family-secundary: 'Lato';
 }
 
-.Login{
+
+.CrearCuenta{
     display: flex;
+    justify-content: center;
+    align-items: center;
     justify-self: center;
     align-self: center;
     flex-direction: column;
-    gap: 0.938rem;
-    width: 40%;
+    gap: 0.8rem;
+    width: 30%;
     height: 31%;
     border: 3px solid #0066FF;
     border-radius: 60px;
-    padding: 2rem;
-    padding-top: 4rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    background-image: url("./img/logo_transparente.png");
+    padding: 1rem;
+    padding-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    background-image: url('../../img/logo_transparente.png');
     background-repeat: no-repeat;
     background-position: 50% 55%;
     background-size: 80%;
     min-width: 290px;
     max-width: 500px;
 }
+.inputAndText{
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+}
 .input{
     background-color: transparent;
     border-radius: 4px;
     outline: none;
     border: 1px var(--color-blank) solid;
-    width: 98%;
-    height: 40px;
+    width: 97%;
+    height: 27px;
 }
 .textSubTitle{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.375rem;
+    height: 0.7rem;
     font-size: 1.4rem;
     margin: 0%;
 }
 .texth3{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    height: 1.5rem;
+    justify-content: center;
+    height: 0.7rem;
     margin: 0%;
-    font-size: 1rem;
-    align-self: flex-start;
+    font-size: 0.8rem;
+    /* align-self: flex-start; */
     font-family: var(--font-family-secundary);
 }
 .linkAcceder{
+    font-size: 0.8rem;
     font-family: var(--font-family-secundary);
     color: var(--color-secundary);
     align-self: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 aside{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    gap: 2.313rem;
+    gap: 0.7rem;
     
 }
 
-.acceder{
+.registrarse{
     font-family: var(--font-family-secundary);
     font-weight: bold;
     border: 1px solid var(--color-secundary);
     border-radius: 9px;
     /* width: 5.375rem; */
-    width: 10.75rem;
-    height: 2.75rem;
+    width: 8rem;
+    height: 2rem;
     cursor: pointer;
 }
 

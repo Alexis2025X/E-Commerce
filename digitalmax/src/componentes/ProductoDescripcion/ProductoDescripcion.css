@@ -16,8 +16,19 @@
 .productDesContent>h2{
     color: #0066ff;
 }
+.productDesContent>h3{
+    color: var(--color-black);
+}
 .contentButonAction{
+    width: fit-content;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     gap: 10px;
+}
+.contentButonAction > span{
+    margin-left: 10px;
+    font-size: 24px;
+    color: var(--color-primary);
+
 }

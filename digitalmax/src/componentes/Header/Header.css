@@ -38,22 +38,37 @@
     margin-top: 10px;
 }
 .headerComponent>div:nth-child(2) input{
-    width: 80%;
+    width: 100%;
+    /* width: 80%; */
     height: 40px;
     background: #fffff0;
     /* border-radius: 16px; */
     border-radius: 28px;
     border: none;
     outline: none;
+    padding-left: 15px;
     /* box-shadow: 1px 2px 10px #353434; */
 }
 .headerComponent>div:last-child{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 25%;
-     
+}
+.headerIconUser{
+    min-height: 7vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px solid #fffff0;
+
+}
+.headerIconUser>img{
+    min-width: 30px;
+    min-height: 30px;
+    translate: transformY(100%);
 }
 .headerComponent>div:last-child img{
     width: 20px;
@@ -61,23 +76,24 @@
     margin: 0px;
     padding: 0px;
     cursor: pointer;
+    
 }
 .headerComponent>div:last-child p{
     margin: 0px;
     padding: 0px;
     font-size: 0.6rem;
 }
-.headerComponent>div:last-child>img:last-child{
-    margin-top: -20px;
-}
+
 .headercontenicon{
     display: flex;
     align-items: center;
+    gap: 0px;
     justify-items: center;
 }
 .headercontenicon img{
-    width: 50px;
-    height: 50px;
+    max-width: 30px;
+    max-height: 30px;
+  
 }
 .headercontenicon>img:nth-child(2){
     position: absolute;
@@ -85,8 +101,8 @@
 }
 .contentMenuHover{
     position: absolute;
-    top: 60px;
-    right: 9%;
+    top: 70px;
+    right: 13%;
     font-size: 0.8rem;
     list-style: none;
     text-decoration: none;
@@ -133,7 +149,17 @@
     color: #000;
     border-bottom: 1px solid #1d1d1d;
 }
-
+@media (width < 600px){
+    .headerComponent>div:last-child{
+        /* min-width: 50%; */
+        justify-content: space-evenly;
+    }
+    .contentIconColor{
+        display: flex;
+        min-width: 10%;
+        gap: 10px;
+    }
+}
 
 @media (width > 600px) {
     .headerComponent>div:nth-child(2) input{
@@ -147,22 +173,25 @@
     .headerComponent>div:first-child img{
         margin-top: 10px;
         margin-left: 10px;
-         width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
     .headerComponent>div:last-child img{
         margin-top: 10px;
         margin-right: 10px;
-        width: 40px;
-        height:40px;
+        width: 20px;
+        height:20px;
     }
     .headerComponent>div:last-child img:last-child{
-        margin-top: -10px;
+        margin-top: 10px;
     }
+    
 }
 @media (width>1150px) {
+    
     .headerComponent>div:nth-child(2) input{
         width: 700px;
         margin-left: 130px;
     }
+    
 }

@@ -1,0 +1,20 @@
+.adminMenu{
+    border-bottom: 2px solid black;
+    display: flex;
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 150px;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.adminMenu>img{
+    width: 10%;
+    height: 10%;
+    margin-left: 20%;
+}
+.adminMenu>h2{
+    font-size: roboto, sans-serif;
+}

@@ -1,0 +1,22 @@
+.contentFrameBienvenida{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    left: 180px;
+    width: 90%;
+    height: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+.contentFrameBienvenida>h3{
+   color: #022456;
+}
+.contentFrameBienvenida>h2{
+    color: #012DBB;
+    opacity: 0.8;
+}

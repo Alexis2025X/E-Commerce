@@ -3,12 +3,14 @@ import '../ReseñaProductDetalles/ReseñaProductDetalles.css'
 function ReseñaProductDetalles(props){
     return(
         <div className="reseñaUser">
-            <div>
-                <h4>{props.nombre}</h4>
-                <StardCalificacion tamaño = {props.calificacion}/>
+            <h3>{props.titulo}</h3>
+            <div className="infoUserReseña">
+                <StardCalificacion tamaño = {props.calificacion} count = {props.valoracion}/>  
+                <p>{props.tiempo +  "   • "+ props.nombre}</p>
             </div>
-                
+            <span>
                 <p>{props.reseña}</p>
+            </span>
         </div>
         
         

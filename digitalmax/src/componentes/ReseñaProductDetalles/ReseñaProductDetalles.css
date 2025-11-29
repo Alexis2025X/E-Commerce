@@ -1,20 +1,50 @@
-.reseñaUser{
+.reseñaUser {
     width: 100%;
-   display: flex;
-   flex-direction: column;
-   padding: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    background-color: rgba(125, 125, 125, 0.4667);
+    border: 1px solid #7D7D7D;
+    border-radius: 16px;
+    
+
 }
-.reseñaUser>div:first-child{
+
+/* .infoUserReseña {
     min-width: 100%;
     display: flex;
     flex-direction: row;
     margin: 0px;
     padding: 0px;
+} */
+.reseñaUser>h3 {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px;
+    /* margin-top: 15px; */
 }
-.reseñaUser>div:first-child>h4{
-    margin-top: 15px;
+.infoUserReseña{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    gap: 10px;
 }
-.reseñaUser>p{
-    margin-left: 10%;
+.infoUserReseña>h4 {
+    margin: 0px;
+    padding: 0px;
+    /* margin-top: 15px; */
+}
+
+.reseñaUser>span {
+    margin-left: 15px;
+    margin-right: 15px;
     margin-top: 0px;
+}
+.reseñaUser>span>p {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 5px;
 }

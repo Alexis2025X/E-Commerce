@@ -84,7 +84,7 @@
  
 }
 
-.contentProduct{
+/* .contentProduct{
   max-width: 85vw;
   height: auto;
   display: grid;
@@ -95,7 +95,7 @@
   margin-top: -40px;
   margin-left: 75px;
 
-}
+} */
 @media (width < 650px) {
   .contentCat{
     width: 70vw;

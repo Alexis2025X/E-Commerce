@@ -1,0 +1,58 @@
+
+.contentPanel{
+    position: absolute;
+    top:9%;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    display: grid;
+    grid-template-columns: 200px 5fr;
+}
+.adminMenuPanel{
+    border-right: 3px solid #0066ff;
+}
+.logoPanelContent{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    left: 180px;
+    width: 90%;
+    height: 90%;
+    opacity: 0.6;
+    z-index: -100;
+    object-fit: contain;
+}
+.menuDespliegueProductos{
+    position: fixed;
+    top: 26%;
+    left: 20px;
+    z-index: 10;
+    background: #F5F5F5;
+    padding: 0px;
+    border-radius: 10px;
+}
+.menuDespliegueProductos>ul{
+    margin: 0px;
+    padding: 5px;
+
+}
+.menuDespliegueProductos>ul>li{
+    text-decoration: none;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.8rem;
+    margin:10px;
+    cursor: pointer;
+}
+.menuDespliegueProductos>ul>li:hover{
+    opacity: 0.4;
+}
+.menuDespliegueProductos>ul>li:first-child{
+    border-bottom: 2px solid black;
+}
+
+.noDisplegado{
+    display: none;
+}

@@ -1,0 +1,242 @@
+.contentDetallesSection {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+.contentDetalles {
+    max-width: 80vw;
+    /* grid-template-columns: 1fr 2fr; */
+    margin-left: 7%;
+    margin-top: 20px;
+    width: fit-content;
+    height: fit-content;
+    /* gap: 20px; */
+}
+.contentDetalles>.infoProducto {
+    /* background-color: var(--color-secundary); */
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 1px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+.contentDetalles>.infoProducto>p {
+    display: flex;
+    align-items: center;
+    height: 29px;
+    padding: 0px;
+    margin: 0px;
+}
+.contentDetalles>.infoProducto>h2 {
+    display: flex;
+    align-items: center;
+    height: 43px;
+    padding: 0px;
+    margin: 0px;
+}
+.contentDetalles>.imgProducto {
+    border: 1px solid #7D7D7D;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    height: 275px;
+    width: 275px;
+    cursor: pointer;
+}
+
+.contentImageSec{
+    width: 100px;
+    height: 100px;
+    border: 1px solid #7D7D7D;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.contentImageSec>img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 16px;
+    cursor: pointer;
+}
+.contentDetalles>div>img {
+    /* background-color: aqua; */
+    width: 100%;
+    height: 100%;
+    min-height: 100px;
+    margin: 0px;
+    padding: 0px;
+    object-fit: contain;
+}
+.calificacionPrecio {
+    display: flex;
+    align-self: end;
+    flex-direction: column;
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.contentDescripcionSection{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    justify-content: center;
+}
+.contentDescripcion{
+    margin: 10px;
+    height: fit-content;
+}
+
+.contentEspecificaciones{
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.contentReseña{
+    height: fit-content;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 55%;
+}
+.ContenedorReseña{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.contentReseña>div {
+    background-color: transparent;
+    border: 0px;
+    width: 100%;
+    border-radius: 10px;
+}
+.contentReseñaText{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.createReseña{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    height: 50vh;
+    top: 40%;
+    right: 2%;
+    background-color: #F4F4F4;
+    border: 1px solid #7D7D7D;
+
+    border-radius: 16px;
+    overflow: hidden;
+}
+.contentStartReseña{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 15%;
+
+}
+.contentInput{
+    width: 80%;
+    height: 30%;
+    border: 1px solid #7D7D7D;
+    outline: none;
+    border-radius:16px ;
+    padding: 5px;
+    resize: none;
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+}
+.contentInput div{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+.contentInput div:first-child {
+    border-bottom: 2px solid black;
+}
+
+
+.contentInput div label{
+    padding: 1%;
+    min-width: 40%;
+}
+.contentInput div input{
+    max-width: 50%;
+    background: transparent;
+    border: 0px;
+    outline: none;
+
+
+}
+
+@media (width < 500px) {
+    .contentDetalles {
+        grid-template-columns: 1fr;
+    }
+
+    .contentDetalles>div>img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .contentReseña{
+        width: 90%;
+        margin-bottom: 30vh;
+    }
+    .createReseña{
+        width: 80vw;
+    }
+
+    .contentDetalles {
+        margin-bottom: 30px;
+    }
+}
+
+@media (width > 500px) {
+    .contentDetalles {
+        margin-bottom: 30px;
+    }
+}
+
+@media (width > 1000px) {
+    .contentDetallesSection {
+        grid-template-columns: 1fr 2fr;
+    }
+    .contentDetalles>.imgProducto{
+        margin-left: 100px;
+    }
+    .contentDetalles {
+        margin-bottom: -10px;
+        margin-left: 90px;
+        margin-right: 40px;
+    }
+    .contentDescripcion{
+        margin-left: 105px;
+        margin-right: 105px;
+    }
+    .contentEspecificaciones{
+        margin-left: 105px;
+        margin-right: 105px;
+    }
+    .contentReseña{
+        margin-left: 105px;
+        margin-right: 105px;
+}
+ .createReseña{
+        width: 30vw;
+    }
+
+}

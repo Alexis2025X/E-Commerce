@@ -1,10 +1,10 @@
 import './ButtonActionProduc.css'
 
-function ButtonActionProduc(prop){
-    const estado = prop.status
+function ButtonActionProduc({status, text, Click,nameItem}){
+    const estado = status
     return(
-        <div className= {  `contentButtonDetalles ${estado}`} >
-            <p>{prop.text}</p>
+        <div id = {nameItem} onClick={Click} className= {  `contentButtonDetalles ${estado}`} >
+            <p>{text}</p>
         </div>
     );
 }

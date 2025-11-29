@@ -1,29 +1,47 @@
-import viteLogo from '/vite.svg'
 import ProductoDescripcion from '../../componentes/ProductoDescripcion/ProductoDescripcion';
+import PreciosComprar from '../../componentes/PreciosComprar/PreciosComprar';
 import '../DetallesLayout/DetallesLayout.css'
 import ReseñaProductDetalles from '../../componentes/ReseñaProductDetalles/ReseñaProductDetalles';
-function DetallesLayout(){
-    return(
+import { useEffect, useState } from 'react';
+import ProductoDetallado from '../../componentes/ProductoDetallado/ProductoDetallado.jsx';
+import { obtenerProducto } from '../../API/ProductosAPI.js';
+import { useParams } from 'react-router-dom';
+
+function DetallesLayout() {
+    const { id } = useParams();
+    const [product, setProduct] = useState({});
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                setLoading(true);
+                // Usamos fetchAllProduct para obtener un producto
+                const fetchedProduct = await obtenerProducto(id);
+                console.log("Fetched product:", fetchedProduct);
+                setProduct(fetchedProduct);
+            } catch (error) {
+                console.error("Error fetching product:", error);
+            } finally {
+                setLoading(false);
+                console.log("Se cargo el producto correctamente.");
+            }
+        };
+        fetchProduct();
+    }, [id]);
+
+    const Loading = (loading) => {
+        if (loading === true) {
+            return <div>Cargando producto...</div>;
+
+        }
+    }
+    return (
         <>
-        <main className="contentDetalles">
-                <div>
-                    <img src= {viteLogo} alt="Producto" />
-                </div>
-                <div>
-                    <ProductoDescripcion descripcion = " Mouse inalámbrico ergonómico con batería recargable 600 / 800 / 1200 DPI" precio = "13.99"/>
-                </div>
-        </main>
-        <main className='contentReseña'>
-            <h2>Reseñas</h2>
-            <ReseñaProductDetalles
-            nombre = {"Juan perez"}
-            calificacion = {15}
-            reseña = {"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta repudiandae iure harum non. Modi, maiores. Dolorum, ratione sequi quas enim provident iste illo sed repudiandae, voluptatum maxime impedit voluptate harum."}
-            />
-        </main>
+            {Loading(loading)}
+            <ProductoDetallado productID={product._id} imagen={product.imagenUrl} imagen2={product.imagenUrl1} imagen3={product.imagenUrl2} nombre={product.nombre} categoria={product.categoria} marca={product.marca} modelo={product.modelo} precioDes={product.precio} precio={product.precio} descuento={product.descuento} stock={product.stock} descripcion={product.descripcion} especificaciones={product.especificaciones} />
         </>
     );
 }
-
-
 export default DetallesLayout;

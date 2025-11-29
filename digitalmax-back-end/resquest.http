@@ -1,0 +1,36 @@
+POST http://localhost:3000/productos HTTP/1.1
+Content-Type: application/json
+
+{   
+    "imagenUrl": "http://exampleP.com/imagen.jpg",
+    "nombre": "Producto de PRUEBOTA v5",
+    "descripcion": "Este es un producto de PRUEBOTA v5.",
+    "valoracion": 5.83,
+    "precio": 19.90,
+    "categoria": "ElectrónicA",
+    "stock": 1000
+}
+###
+
+
+###
+GET http://localhost:3000/productos/68fe60d9664d56400a197747 HTTP/1.1
+###
+DELETE http://localhost:3000/productos/68fe60d9664d56400a197747 HTTP/1.1
+###
+GET http://localhost:3000/productos HTTP/1.1
+###
+PUT http://localhost:3000/productos/68fe60d9664d56400a197747 HTTP/1.1
+Content-Type: application/json
+
+{   
+    "imagenUrl": "http://exampleP.com/imagen_actualizada.jpg",
+    "nombre": "Producto de POLLO v5 ACTUALIZADO",
+    "descripcion": "Este es un producto de PRUEBOTA v5, ahora actualizado.",
+    "valoracion": 4.75,
+    "precio": 17.90,
+    "categoria": "Electrónica",
+    "stock": 950
+}
+
+
