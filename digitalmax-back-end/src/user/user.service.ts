@@ -11,7 +11,7 @@ import { Logindto } from 'src/dto/Login.dto';
 import {hash, compare} from 'bcrypt'
 
 import jwt from 'jsonwebtoken'
-import { Request, Response } from 'express';
+import { Request, response, Response } from 'express';
 import {serialize} from 'cookie'
 
 @Injectable()
@@ -23,7 +23,8 @@ export class UserService {
   }
 
   async create(createUser: CreateUserDTO) {
-    this.userModel.create();
+    try {
+      this.userModel.create();
 
     const {contraseña} = createUser
 
@@ -32,6 +33,11 @@ export class UserService {
 
     const newUser = new this.userModel(createUser);
     return newUser.save();
+    } catch (error) {
+      const res = response
+      return  res.status(409)
+    }
+    
   }
 
   async findOne(correouser: string) {
