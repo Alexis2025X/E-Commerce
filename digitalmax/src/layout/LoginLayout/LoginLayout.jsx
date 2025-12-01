@@ -18,24 +18,11 @@ import Swal from 'sweetalert2';
 function LoginLayout() {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     const navigateReguistre = useNavigate();
-        
-        const submitLogin = async () =>{
-            try {
-            const obtenCookie = await obtenertoken(dataLogin)
-
-            if(obtenCookie.status == 201){
-                navigateReguistre('/')
-            }else{
-                 alert("Usuario y/o contraseña incorrectos")
-            }
-
-            } catch (error) {
-                alert("Contraeña y/o usuario incorrectos")
-                console.error('Contraeña y/o usuario incorrectos', error)
-            }
-   const handleAccessRegistroLogin = () =>{
-            navigateReguistre('/')
+ const handleAccessRegistroLogin = () =>{
+            navigateReguistre('/crearCuenta')
         }
+        
+  
          
         const[dataLogin, setDataLogin] = useState({
             correo: '',
@@ -43,29 +30,33 @@ function LoginLayout() {
         })
 
         
-        const handleChangeLogin = (event) => {
-            setDataLogin({...dataLogin, [event.target.name] : event.target.value});
-          
-        }
+       
     const submitLogin = async () => {
-        try {
-            const res = await obtenerUsers(dataLogin).then(res => res.json()).then((data) => {
-                if (data.contraseña == dataLogin.contraseña) {
-                    //alert("BIENVENIDO A DIGITALMAX")
-                    Swal.fire({
+
+          try {
+            const obtenCookie = await obtenertoken(dataLogin)
+
+            if(obtenCookie.status == 201){
+                Swal.fire({
                         title: "Inicio de sesión exitoso",
                         text: "¡BIENVENIDO A DIGITALMAX!",
                         icon: "success",
                         confirmButtonColor: "#3085d6",
                         confirmButtonText: "Aceptar"
                     });
-                    localStorage.setItem('user', data._id)
-                    if (data.status != "inactive") {
-                        navigateReguistre(userStats)
-                    } else {
-                        navigateReguistre('/')
-                 }
+                      navigateReguistre('/')
+                    
             }else{
+                   Swal.fire({
+                        title: "Acceso denegado",
+                        text: "Contraeña y/o usuario incorrectos",
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Aceptar"
+                    });
+            }
+
+            } catch (error) {
                   Swal.fire({
                         title: "Acceso denegado",
                         text: "Contraeña y/o usuario incorrectos",
@@ -73,26 +64,15 @@ function LoginLayout() {
                         confirmButtonColor: "#3085d6",
                         confirmButtonText: "Aceptar"
                     });
-
             }
-            
-
 
         
-
-        } catch (error) {
-
-            Swal.fire({
-                title: "Acceso denegado",
-                text: "Ocurrio un error: " + error,
-                icon: "error",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "Aceptar"
-            });
+    
+}
+ const handleChangeLogin = (event) => {
+            setDataLogin({...dataLogin, [event.target.name] : event.target.value});
+          
         }
-    }
-    }
-
 
     return (
         <div className='contenedorPadreLogin'>

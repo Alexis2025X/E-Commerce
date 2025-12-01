@@ -19,13 +19,10 @@ function DetallesLayout() {
                 setLoading(true);
                 // Usamos fetchAllProduct para obtener un producto
                 const fetchedProduct = await obtenerProducto(id);
-                console.log("Fetched product:", fetchedProduct);
                 setProduct(fetchedProduct);
             } catch (error) {
-                console.error("Error fetching product:", error);
             } finally {
                 setLoading(false);
-                console.log("Se cargo el producto correctamente.");
             }
         };
         fetchProduct();
@@ -40,7 +37,7 @@ function DetallesLayout() {
     return (
         <>
             {Loading(loading)}
-            <ProductoDetallado productID={product._id} imagen={product.imagenUrl} imagen2={product.imagenUrl1} imagen3={product.imagenUrl2} nombre={product.nombre} categoria={product.categoria} marca={product.marca} modelo={product.modelo} precioDes={product.precio} precio={product.precio} descuento={product.descuento} stock={product.stock} descripcion={product.descripcion} especificaciones={product.especificaciones} />
+            <ProductoDetallado  resenas = {product.resena}  productID={product._id} imagen={product.imagenUrl} imagen2={product.imagenUrl1} imagen3={product.imagenUrl2} nombre={product.nombre} categoria={product.categoria} marca={product.marca} modelo={product.modelo} precioDes={product.precio} precio={product.precio} descuento={product.descuento} stock={product.stock} descripcion={product.descripcion} especificaciones={product.especificaciones} />
         </>
     );
 }

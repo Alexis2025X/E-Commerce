@@ -52,8 +52,7 @@ export class Producto {
     @Prop({ type: [resena] })
       resena: resena[];
 
-  @Prop({ required: true })
-  valoracion: number;
+
 }
 
 export const ProductoSchema = SchemaFactory.createForClass(Producto);

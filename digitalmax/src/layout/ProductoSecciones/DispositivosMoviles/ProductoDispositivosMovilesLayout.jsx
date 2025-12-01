@@ -62,7 +62,7 @@ function ProductoDispositivosMovilesLayout() {
 
   function mostrarProductos(resultados){
     try{
-    return resultados.map((product) => (
+    return resultados?.map((product) => (
       <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
       ))
     }catch(error){

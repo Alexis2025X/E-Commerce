@@ -29,8 +29,7 @@ export const crearProduct = async (datos: datasProduct) =>
 export const obtenerProductos = () =>
   fetch(`${API}/productos`, {
     method: "GET"
-  }).then((response) => {
-    return response.json()});
+  }).then((response) => {if(response != undefined) return response.json()});
 
 
 export const obtenerProducto = async (id: string) =>

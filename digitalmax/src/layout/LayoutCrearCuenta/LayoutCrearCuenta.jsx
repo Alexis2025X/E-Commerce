@@ -54,8 +54,8 @@ function FormCrearCuenta() {
             event.preventDefault();
             try {
                 const res = await crearUser(dataEnvio);
-                on();
-                if (res.status === 201) {
+              
+            if (res.status === 201) {
                     //alert("Usuario creado con éxito");
                     Swal.fire({
                         title: "Usuario creado con éxito",
@@ -64,8 +64,16 @@ function FormCrearCuenta() {
                         confirmButtonColor: "#3085d6",
                         confirmButtonText: "Aceptar"
                     });
-                    navigate('/app/productos');
-                }
+                    navigate('/');
+            }else{
+                Swal.fire({
+                        title: "No fue poscible crear el Usuario",
+                        text: "Intente nuevamente",
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "Aceptar"
+                    });
+            }
             } catch (error) {
                 console.error('Usuario no creado', error)
                 //alert("Error al crear su usuario intentelo nuevamente")
