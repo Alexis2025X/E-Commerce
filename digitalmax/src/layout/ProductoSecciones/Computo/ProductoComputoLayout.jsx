@@ -84,7 +84,18 @@ useEffect(() => {
         
     }
   }
-
+function mostrarProductos(resultados){
+    try{
+    return resultados?.map((product) => (
+      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
+      ))
+    }catch(error){
+      //console.log("Error al mostrar los productos")
+      return <div>No se pudieron cargar los productos</div>
+    }finally{
+      //console.log("Productos mostrados correctamente")
+    }
+  }
 
   return (
     
@@ -99,9 +110,7 @@ useEffect(() => {
       {sinResultados()}
       </div>
       <div className="contentProduct">
-      {resultados.map((product) => (
-      <CardProduct key={product._id || product.id} click={ () => handleProducto(product._id || product.id)} src = {product.imagenUrl} description = {product.nombre} precio = {product.precio} />
-      ))}
+          { mostrarProductos(resultados)}
 
       </div>
     </main>

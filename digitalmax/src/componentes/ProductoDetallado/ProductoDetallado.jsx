@@ -1,31 +1,23 @@
-import viteLogo from "/vite.svg";
 import ProductoDescripcion from "../../componentes/ProductoDescripcion/ProductoDescripcion";
 import PreciosComprar from "../../componentes/PreciosComprar/PreciosComprar";
 import "../ProductoDetallado/ProductoDetallado.css";
 import ReseñaProductDetalles from "../../componentes/ReseñaProductDetalles/ReseñaProductDetalles";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import ZoomImage from "../ZoomImage/ZoomImage";
 import ButtonEditar from "../ButtonEditar/ButtonEditar";
 import StardCalificacion from "../StardCalificacion/StardCalificacion";
-
 import ButtonActionProduc from "../ButtonActionProduc/ButtonActionProduc";
-
 import { PostResena } from "../../API/ProductosAPI";
 import { obtenerTokenUserLogin } from "../../API/UserAPI";
+import Swal from 'sweetalert2';
+
 export function calcularPrecioDescuento(precio, descuento) {
   return (precio - (precio * descuento) / 100).toFixed(2);
 }
 
-//EN PROCESO
-// function sinDescuento(prop) {
-//     if (prop.descuento < 0) {
-//         return <PreciosComprar precioDescuento={calcularPrecioDescuento(props.precio, props.descuento)} precio={props.precio} descuento={props.descuento} stock={props.stock} />
-//     }
-//     else if(prop.descuento > 0){
-//         return <EstadoProducto estado="PocasUnidades" text="Pocas Unidades" />
-//     }
-// }
 function ProductoDetallado(props) {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   const [statusImage, setStatusImage] = useState(false);
 
   const [createReseña, setCreateReseña] = useState(false);
@@ -34,20 +26,12 @@ function ProductoDetallado(props) {
 
   const [calidicacionReseña, setCalificacionReseña] = useState(0);
 
-
   function handleCambioCal(event) {
     let nuevaCal = event.target.id;
     if (nuevaCal != "") {
       setCalificacionReseña(nuevaCal);
     }
   }
-
-   
-
-   
-            
-  
-
 
   function handleZoomImg(srcImage) {
     setimagensrc(srcImage);
@@ -60,60 +44,83 @@ function ProductoDetallado(props) {
     setStatusImage(!statusImage);
   };
 
-  function limpiezaData(){
-     document.getElementById("tituloReseña").value = "";
-     document.getElementById("DescripcionReseña").value ="";
-     setCalificacionReseña(0)
+  function limpiezaData() {
+    document.getElementById("tituloReseña").value = "";
+    document.getElementById("DescripcionReseña").value = "";
+    setCalificacionReseña(0);
   }
 
   async function handlClickreseñaEnvio() {
     try {
-       const tituloReseña = document.getElementById("tituloReseña").value;
-    const description = document.getElementById("DescripcionReseña").value;
-    let user = ""
-    let username =""
-       await obtenerTokenUserLogin().then(res => res.json()).then((data) => {user = data.iduser
-        username = data.nombre
-       })
+      const tituloReseña = document.getElementById("tituloReseña").value;
+      const description = document.getElementById("DescripcionReseña").value;
+      let user = "";
+      let username = "";
+      await obtenerTokenUserLogin()
+        .then((res) => res.json())
+        .then((data) => {
+          user = data.iduser;
+          username = data.nombre;
+        });
 
+      const data = {
+        userReseña: user,
+        userNameReseña: username,
+        titulo: tituloReseña,
+        descripcion: description,
+        valoracion: parseInt(calidicacionReseña),
+      };
 
-    const data = {
-      userReseña: user,
-      userNameReseña: username,
-      titulo: tituloReseña,
-      descripcion: description,
-      valoracion: parseInt(calidicacionReseña),
-    };
+      if (data.userReseña == "" || data.userNameReseña == "") {
+        Swal.fire({
+        title: "Error de envio de reseña",
+        text: "Requiere iniciar sesion para hacer una reseña",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Aceptar",
+      });
+        return;
+      }
+      if (
+        data.userReseña == "" ||
+        data.userNameReseña == "" ||
+        data.titulo == "" ||
+        data.descripcion == "" ||
+        data.valoracion == ""
+      ) {
+        Swal.fire({
+        title: "Error de envio de reseña",
+        text: "Rellene todos los datos para seguir con la reseña",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Aceptar",
+      });
+        return;
+      }
 
-    if(data.userReseña == "" ||
-      data.userNameReseña == ""){
-        alert("Requiere iniciar sesion para hacer una reseña")
-        return
-    }
-    if(
-      data.userReseña == "" ||
-      data.userNameReseña == "" ||
-      data.titulo == "" ||
-      data.descripcion == "" ||
-      data.valoracion == "" 
-    ){
-        alert("Rellene todos los datos para seguir con la reseña")
-        return
-    }
-   
       const idProduc = props.productID;
-      
-    const res =   await PostResena(idProduc, data);
-      limpiezaData()
-    console.log(res)
-      alert("La reseña se envio correctamente");
-     
-    } catch(error) {
-      alert("Error al enviar la reseña");
-      console.error(error)
+
+      const res = await PostResena(idProduc, data);
+      limpiezaData();
+      Swal.fire({
+        title: "Reseña enviada",
+        text: "El producto ha sido reseñado correctamente",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Aceptar",
+      });
+    } catch (error) {
+      Swal.fire({
+        title: "No fue posible enviar la reseña",
+        text: "Intente nuevamente",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Aceptar",
+      });
     }
   }
-function calcularDias(fechaEspecifica) {
+
+  function calcularDias(fechaEspecifica) {
     const fechaInicial = new Date(fechaEspecifica);
     const fechaHoy = new Date();
     fechaInicial.setHours(0, 0, 0, 0);
@@ -122,19 +129,19 @@ function calcularDias(fechaEspecifica) {
     const MS_POR_DIA = 86400000;
     const diasTranscurridos = Math.round(diferenciaMilisegundos / MS_POR_DIA);
 
-
-  if(diasTranscurridos == 0){
-    return "Hoy"
-  }else if(diasTranscurridos <= 7){
-    return "Hace " + diasTranscurridos +" días"
+    if (diasTranscurridos == 0) {
+      return "Hoy";
+    } else if (diasTranscurridos <= 7) {
+      return "Hace " + diasTranscurridos + " días";
+    } else if (diasTranscurridos > 7) {
+      return fechaInicial.toLocaleDateString("es-ES");
+    }
   }
-  else if(diasTranscurridos > 7){
-    return fechaInicial.toLocaleDateString('es-ES')
-  }
-}
 
-const productos = props.resenas;
- 
+  const productos = props.resenas;
+
+  console.log(productos)
+
   return (
     <>
       {statusImage ? (
@@ -211,17 +218,16 @@ const productos = props.resenas;
             />
           </section>
           <div>
-
-          {productos?.map((producto) => (
-        <ReseñaProductDetalles
-              titulo={producto.titulo}
-              nombre={producto.userNameReseña}
-              calificacion={15}
-              valoracion = {producto.valoracion}
-              reseña={producto.descripcion}
-              tiempo = { calcularDias(producto.createdAt)}
+            {productos?.map((producto) => (
+              <ReseñaProductDetalles
+                titulo={producto.titulo}
+                nombre={producto.userNameReseña}
+                calificacion={15}
+                valoracion={producto.valoracion}
+                reseña={producto.descripcion}
+                tiempo={calcularDias(producto.createdAt)}
               />
-      ))}         
+            ))}
           </div>
         </main>
         {createReseña ? (
@@ -237,16 +243,24 @@ const productos = props.resenas;
             <div className="contentInput">
               <div>
                 <label htmlFor="tituloReseña">Titulo</label>
-                <input type="text" maxLength={20} id="tituloReseña" placeholder="Escribe algo" />
+                <input
+                  type="text"
+                  maxLength={20}
+                  id="tituloReseña"
+                  placeholder="Escribe algo"
+                />
               </div>
 
               <div>
                 <label htmlFor="DescripcionReseña">Descripción</label>
-                <input type="text" id="DescripcionReseña"  placeholder="Escribe algo"/>
+                <input
+                  type="text"
+                  id="DescripcionReseña"
+                  placeholder="Escribe algo"
+                />
               </div>
             </div>
             <br />
-           
 
             <ButtonActionProduc
               status={"ActionActivo"}
