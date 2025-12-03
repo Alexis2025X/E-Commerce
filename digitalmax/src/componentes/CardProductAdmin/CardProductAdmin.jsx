@@ -2,6 +2,7 @@ import '../CardProductAdmin/CardProductAdmin.css'
 import '../CardProductAdmin/CardProductAdmin.css'
 
 function CardProductAdmin(prop){
+
     return(
         
         //<div onClick={prop.click} className='AdminProductCard'>
@@ -11,7 +12,8 @@ function CardProductAdmin(prop){
             <span>USD {prop.precio}</span>
             <div className='Buttons'>
             <button className='ModificarButton'>Modificar</button>
-            <button className='EliminarButton'>Eliminar</button>                
+            {/* <button className='EliminarButton' onClick={prop.click}>Eliminar</button>                 */}
+            <button className='EliminarButton' onClick={prop.click}>Eliminar</button>                
             </div>
         </div>
     );

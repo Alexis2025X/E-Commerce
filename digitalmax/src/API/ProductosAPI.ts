@@ -26,6 +26,32 @@ export const crearProduct = async (datos: datasProduct) =>
     },
   });
 
+// export const eliminarProducto = async (id: string) =>
+//   fetch(`${API}/productos/${id}`, {
+//     method: "DELETE",
+//   }).then((response) => {
+//     return response.json()});
+
+
+export const eliminarProducto = async (id: string) => {
+  try {
+    const response = await fetch(`${API}/productos/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+    // Parseamos la respuesta como JSON
+    // Algunas APIs retornan contenido, otras no
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return true;
+    }
+    return await response.json();
+  } catch (error) {
+    return false; // Retorna false en caso de error
+  }
+};
+
 export const obtenerProductos = () =>
   fetch(`${API}/productos`, {
     method: "GET"

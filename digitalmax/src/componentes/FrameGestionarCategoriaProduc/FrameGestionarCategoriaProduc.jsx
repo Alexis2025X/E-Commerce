@@ -20,66 +20,69 @@ function FrameGestionarCategoriaProduc(prop) {
     //setseccionProducto(prop.estado);
     function handleCambioFrame(event) {
         const seleccion = event.target.innerHTML
-        switch (seleccion) {
-            case "Gestionar Producto":
-                console.log("Regresando a gestionar productos");
-                setseccionProducto(false);
-                setTitulo("");
-                setCategoria("");
-                break;
-            case "Dispositivos moviles":
-                setTitulo("Dispositivos Moviles");
-                setCategoria("Dispositivos Moviles");
-                setseccionProducto(true);
-                break;
-            //SetFrame(<FrameGestionarProducto/>)
-            //break
-            case "Computación":
-                setTitulo("Computo");
-                setCategoria("Computo");
-                setseccionProducto(true);
-                <div>Cargando...</div>
-                break;
-            //break
-            case "Audio":
-                setTitulo("Audio");
-                setCategoria("Audio");
-                setseccionProducto(true);
-                break;
-            //break
-            case "Cables":
-                setTitulo("Cables");
-                setCategoria("Cables");
-                setseccionProducto(true);
-                <div>Cargando...</div>
-                break;
-            //break
-            case "Seguridad":
-                setTitulo("Seguridad");
-                setCategoria("Seguridad");
-                setseccionProducto(true);
-                break;
-            //break
-            case "Casa y Oficina":
-                setTitulo("Casa y Oficina");
-                setCategoria("Casa y Oficina");
-                setseccionProducto(true);
-                break;
-            //break
-            case "Redes":
-                setTitulo("Redes");
-                setCategoria("Redes");
-                setseccionProducto(true);
-                <div>Cargando...</div>
-                break;
-            //break
+        setTitulo("");
+        setCategoria("");
+        setseccionProducto(false);
 
-            default:
-                setseccionProducto(prop.atras);
-                setTitulo("");
-                setCategoria("");
+        // Pequeño delay para evitar problemas de renderizado
+        setTimeout(() => {
+            let nuevoTitulo = "";
+            let nuevaCategoria = "";
+            let mostrarProductos = false;
+            switch (seleccion) {
+                case "Dispositivos moviles":
+                    nuevoTitulo = "Dispositivos Moviles";
+                    nuevaCategoria = "Dispositivos Moviles";
+                    mostrarProductos= true;
+                    break;
+                //SetFrame(<FrameGestionarProducto/>)
+                //break
+                case "Computación":
+                    nuevoTitulo = "Computo";
+                    nuevaCategoria = "Computo";
+                    mostrarProductos= true;
+                    break;
+                //break
+                case "Audio":
+                    nuevoTitulo = "Audio";
+                    nuevaCategoria = "Audio";
+                    mostrarProductos=true;
+                    break;
+                //break
+                case "Cables":
+                    nuevoTitulo = "Cables";
+                    nuevaCategoria = "Cables";
+                    mostrarProductos=true;
+                    break;
+                //break
+                case "Seguridad":
+                    nuevoTitulo = "Seguridad";
+                    nuevaCategoria = "Seguridad";
+                    mostrarProductos=true;
+                    break;
+                //break
+                case "Casa y Oficina":
+                    nuevoTitulo = "Casa y Oficina";
+                    nuevaCategoria = "Casa y Oficina";
+                    mostrarProductos=true;
+                    break;
+                //break
+                case "Redes":
+                    nuevoTitulo = "Redes";
+                    nuevaCategoria = "Redes";
+                    mostrarProductos = true;
+                    break;
+                //break
 
-        }
+                default:
+                    mostrarProductos= false;
+                    nuevoTitulo = ("");
+                    nuevaCategoria = "";
+            }
+            setTitulo(nuevoTitulo);
+            setCategoria(nuevaCategoria);
+            setseccionProducto(mostrarProductos);
+        }, 5);
     }
 
     function mostrarFrame(Titulo, Categoria) {
