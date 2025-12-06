@@ -11,7 +11,7 @@ function CardProductAdmin(prop){
             <h2>{prop.description}</h2>
             <span>USD {prop.precio}</span>
             <div className='Buttons'>
-            <button className='ModificarButton'>Modificar</button>
+            <button className='ModificarButton' onClick={prop.modificar}>Modificar</button>
             {/* <button className='EliminarButton' onClick={prop.click}>Eliminar</button>                 */}
             <button className='EliminarButton' onClick={prop.click}>Eliminar</button>                
             </div>

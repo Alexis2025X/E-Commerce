@@ -88,7 +88,7 @@ function FrameGestionarCategoriaProduc(prop) {
     function mostrarFrame(Titulo, Categoria) {
         if (seccionProducto === true) {
             <div>Cargando productos....</div>
-            return <FrameGestionarProducto titulo={Titulo} categoria={Categoria} regresar={prop.atras} />
+            return <FrameGestionarProducto titulo={Titulo} categoria={Categoria}/>
         } else {
             //console.log(seccionProducto);
             return <>

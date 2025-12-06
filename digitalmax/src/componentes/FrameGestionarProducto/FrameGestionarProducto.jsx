@@ -5,6 +5,7 @@ import { obtenerProductos } from "../../API/ProductosAPI";
 import { eliminarProducto } from "../../API/ProductosAPI";
 import CardProductAdmin from "../CardProductAdmin/CardProductAdmin";
 import FrameGestionarCategoriaProduc from "../FrameGestionarCategoriaProduc/FrameGestionarCategoriaProduc";
+import FrameActualizarProducto from "../FrameActualizarProducto/FrameActualizarProducto";
 import flecha from '../../assets/img/flecha-izquierda.svg'
 import Swal from 'sweetalert2';
 
@@ -12,7 +13,10 @@ function FrameGestionarProducto(prop) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [seccionProducto, setseccionProducto] = useState(true);
+    const [seccion, setSeccion] = useState(false);
+    const [codigo, setCodigo] = useState("")
     const navigate = useNavigate();
+    
     //const [confirmacion, setConfirmacion] = useState(false)
     const handleProducto = (id) => {
         //console.log(id)
@@ -22,6 +26,19 @@ function FrameGestionarProducto(prop) {
         return
         //navigate(`/app/productos/producto/dispositivos-moviles/${id}`)
         //navigate(`/app/productos/producto/Telefonos/${id}`)
+    }
+    //function
+
+    const handleModificarProducto = (id) => {
+        modificar(id)
+        return
+    }
+    function modificar(id) {
+        //console.log("Este es mi id", id);
+        setCodigo(id)
+        setSeccion(true)
+        return
+        //return <FrameActualizarProducto id={id} />
     }
 
     async function eliminar(id) {
@@ -71,24 +88,32 @@ function FrameGestionarProducto(prop) {
     }
 
     function mostrar() {
-        if (seccionProducto === false) {
-            return <FrameGestionarCategoriaProduc />
+        if (seccion === true) {
+            //console.log("ESTE ES EL CODIGO", codigo)
+            const Titulo = prop.titulo
+            const Categoria = prop.categoria
+            return <FrameActualizarProducto id={codigo} titulo={Titulo} categoria={Categoria} />
         } else {
-            return <>
-                <main className='mainConteinerAdmin'>
-                    <div className="regresar" onClick={handleCambioFrame} data-action="regresar"><img src={flecha} />Regresar</div>
-                    <h2 className='subtituloProductosAdmin'>{prop.titulo}</h2>
-                    <div>
-                        {Loading(loading)}
-                        {/* {sinResultados()} */}
-                    </div>
-                    <div className="contentProductAdmin">
-                        {
-                            mostrarProductos(products)
-                        }
-                    </div>
-                </main>
-            </>
+            if (seccionProducto === false) {
+                return <FrameGestionarCategoriaProduc />
+                //return <FrameGestionarCategoriaProduc />
+            } else {
+                return <>
+                    <main className='mainConteinerAdmin'>
+                        <div className="regresar" onClick={handleCambioFrame} data-action="regresar"><img src={flecha} />Regresar</div>
+                        <h2 className='subtituloProductosAdmin'>{prop.titulo}</h2>
+                        <div>
+                            {Loading(loading)}
+                            {/* {sinResultados()} */}
+                        </div>
+                        <div className="contentProductAdmin">
+                            {
+                                mostrarProductos(products)
+                            }
+                        </div>
+                    </main>
+                </>
+            }
         }
     }
 
@@ -137,7 +162,7 @@ function FrameGestionarProducto(prop) {
     function mostrarProductos(resultados) {
         try {
             return resultados.map((product) => (
-                <CardProductAdmin key={product._id || product.id} click={() => handleProducto(product._id || product.id)} src={product.imagenUrl} description={product.nombre} precio={product.precio} />
+                <CardProductAdmin key={product._id || product.id} modificar={() => handleModificarProducto(product._id || product.id)} click={() => handleProducto(product._id || product.id)} src={product.imagenUrl} description={product.nombre} precio={product.precio} />
             ))
         } catch (error) {
             //console.log("Error al mostrar los productos")
