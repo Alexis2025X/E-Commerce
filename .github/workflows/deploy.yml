@@ -34,7 +34,18 @@ jobs:
           REG: ${{ secrets.REGISTRY_NAME }}
           IMG: ${{ secrets.IMAGE_NAME }}
         run: |
+          echo "=== CONTENIDO DE Dockerfile ==="
+          if [ -f "Dockerfile" ]; then
+            cat Dockerfile
+          else
+            echo "ERROR: Dockerfile no encontrado"
+            find . -name "Dockerfile" -type f
+            exit 1
+          fi
+          
           TAG=$(echo $GITHUB_SHA | head -c7)
+          echo "Building with tag: $TAG"
+          
           docker build -f Dockerfile -t $REG/$IMG:$TAG .
           docker push $REG/$IMG:$TAG
           docker tag $REG/$IMG:$TAG $REG/$IMG:latest
