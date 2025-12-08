@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "http://DROPLET_IP:3000";
 import { useState } from "react";
 interface datasProduct {
   nombre: string;
