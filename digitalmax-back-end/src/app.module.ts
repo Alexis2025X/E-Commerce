@@ -11,8 +11,8 @@ import { AppService } from './app.service';
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
-        uri: configService.getOrThrow('BASE_URI'),
-        //uri: configService.getOrThrow('MONGO_URI_Alexis'),
+        //uri: configService.getOrThrow('BASE_URI'),
+        uri: configService.getOrThrow('MONGO_URI_Alexis'),
         //uri: configService.get<string>('MONGO_URI_Alexis'),
       }),
       inject: [ConfigService],

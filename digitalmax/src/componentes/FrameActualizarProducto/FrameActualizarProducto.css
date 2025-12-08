@@ -1,0 +1,135 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.contenedorAdminProductos{
+    position: absolute;
+    height: 100%;
+    width: 75%;
+}
+.contenedorAdminProductos>h2{
+    margin: 0px;
+    margin-left: 5%;
+    padding: 0px;
+    
+    font-size: 1.2rem;
+
+}
+.titleAgregar{
+    font-size: 1.2rem;
+    text-align: right;
+    margin-right: 10px; 
+    color: #1d1d1d;
+    opacity: 0.7;   
+}
+.inputAgregarProducto{
+    max-width:90%;
+
+}
+.inputAgregarDatos{
+    max-width: 60%;
+    min-width: 150px;
+}
+.inputAgregarDatos2{
+    max-width: 60%;
+}
+.contentPricipales>div:first-child{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.contentPricipales>div:nth-child(2){
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.contentPricipales>div:nth-child(2)>div:first-child{
+    margin-left: 10%;
+
+}
+.contentPricipales>div:nth-child(2)>div:first-child>input{
+    min-width: 250px;
+}
+
+
+.visibles{
+    margin-left: 5%;
+    font-size: 0.8rem;
+    color: #1d1d1d;
+}
+.titulo_img{
+    margin: 0.2rem;
+}
+.contentInputImage{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.subirImagenes{
+    display: inline-block;
+  padding: 5px 10px;
+  border: 2px solid #1d1d1d;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+.subirImagenes::after{
+    position: absolute;
+    content: 'Agregar imagen';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    color: #1d1d1d;
+    background-color: #FFFFF0;
+}
+.content_img{
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+.imagenProducto{
+    width: 100px;
+    height: 40px;
+    /* width: 100px;
+    height: 40px; */
+    object-fit: contain;
+}
+
+.contentComercial>div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 2%;
+
+}
+.contentButonAdmin{
+    min-width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20%;
+    margin-top: 30px;
+}
+.contentButonAdmin>div{
+    max-height: 30px;
+    width: 130px;
+}
+.regresar{
+    display: flex;
+    align-self: baseline;
+    align-items: center;
+    margin-top: 20px;
+    gap: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+@media (width<1000px) {
+    .contentPricipales>div:nth-child(2)>div:first-child>input{
+        min-width: 100px;
+    }
+
+}
