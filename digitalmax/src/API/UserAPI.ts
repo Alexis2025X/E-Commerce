@@ -1,5 +1,6 @@
 
-const API = 'http://DROPLET_IP:3000'
+const API = 'https://api.digitalmax.cc/'
+//const API = 'http://DROPLET_IP:3000'
 
 interface datasUser{
         nombre: string;
