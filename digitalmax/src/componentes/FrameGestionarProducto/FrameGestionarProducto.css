@@ -60,14 +60,14 @@
 }
 
 @media (width < 650px) {
-    .contentCat>div:first-child {
+    /* .contentCat>div:first-child {
         margin-left: 400px;
-    }
+    } */
 
     .contentCat {
         width: 70vw;
         overflow-x: scroll;
-        justify-content: center;
+        /* justify-content: center; */
         gap: 20px;
     }
 
@@ -88,14 +88,14 @@
 }
 
 @media (width < 1050px) {
-    .contentCat>div:first-child {
+    /* .contentCat>div:first-child {
         margin-left: 400px;
-    }
+    } */
 
     .contentCat {
         width: 70vw;
         overflow-x: scroll;
-        justify-content: center;
+        /* justify-content: center; */
         gap: 20px;
     }
 }
