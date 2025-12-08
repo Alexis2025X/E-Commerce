@@ -34,19 +34,18 @@ jobs:
           REG: ${{ secrets.REGISTRY_NAME }}
           IMG: ${{ secrets.IMAGE_NAME }}
         run: |
-          echo "=== CONTENIDO DE Dockerfile ==="
-          if [ -f "Dockerfile" ]; then
-            cat Dockerfile
-          else
-            echo "ERROR: Dockerfile no encontrado"
-            find . -name "Dockerfile" -type f
-            exit 1
+          # Usar ruta relativa al Dockerfile
+          if [ -f "digitalmax/Dockerfile" ]; then
+            echo "Dockerfile encontrado en digitalmax/"
+            cat digitalmax/Dockerfile
+          elif [ -f "./Dockerfile" ]; then
+            echo "Dockerfile encontrado en ./"
+            cat ./Dockerfile
           fi
-          
           TAG=$(echo $GITHUB_SHA | head -c7)
-          echo "Building with tag: $TAG"
-          
-          docker build -f Dockerfile -t $REG/$IMG:$TAG .
+    
+          # Construir desde la carpeta correcta
+          docker build -f digitalmax/Dockerfile -t $REG/$IMG:$TAG digitalmax/
           docker push $REG/$IMG:$TAG
           docker tag $REG/$IMG:$TAG $REG/$IMG:latest
           docker push $REG/$IMG:latest
