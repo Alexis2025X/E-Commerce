@@ -4,16 +4,19 @@ import CarritoItem from "../../componentes/CarritoItem/CarritoItem";
 import { useState, useEffect, useRef } from "react";
 import { obtenerProducto } from "../../API/ProductosAPI";
 import { obtenerTokenUserLogin, obtenerItemCarrito } from "../../API/UserAPI";
-import { data } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Arrow_1 from "../../assets/img/Arrow 1.png";
+import ButtonActionProduc from "../../componentes/ButtonActionProduc/ButtonActionProduc";
+import { calcularPrecioDescuento } from "../../componentes/ProductoDetallado/ProductoDetallado";
 
 function LayoutCarritoCompra() {
   const [products, setProducts] = useState([]);
   const [productsItems, setProductsItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [reload, setreload] = useState(true);
   const llamadoInicial = useRef(false);
   const [userCarrito, setUserCarrito] = useState("");
-
+  const navigate = useNavigate();
+  const subTotal = useRef(0);
   useEffect(() => {
     if (llamadoInicial.current === false) {
       llamadoInicial.current = true;
@@ -31,8 +34,10 @@ function LayoutCarritoCompra() {
             .then((data) => {
               setProducts(data[0].carrito);
               let dataUsoid = data[0].carrito;
-
-              dataUsoid.map((product) => obtenerProductos(product.idProducto));
+              console.log(dataUsoid);
+              dataUsoid.map((product) =>
+                obtenerProductos(product.idProducto, product.cantSelect)
+              );
             })
             .catch();
         } catch (error) {
@@ -40,18 +45,30 @@ function LayoutCarritoCompra() {
           setLoading(false);
         }
       }
+
       fetchProducts();
     }
   }, []);
 
-  async function obtenerProductos(id) {
+  const obtenerProductos = async (id, cant) => {
     let respuesta = await obtenerProducto(id);
     respuesta = new Array(respuesta);
-
+    let precioDescuento = calcularPrecioDescuento(
+      parseFloat(respuesta[0].precio),
+      parseFloat(respuesta[0].descuento)
+    );
+    const sub = precioDescuento * parseInt(cant);
+    subTotal.current = subTotal.current + sub;
+    subTotal.current = parseFloat(subTotal.current.toFixed(2));
     setProductsItems((data) => {
       return [...data, ...respuesta];
     });
-  }
+    console.log(subTotal.current);
+  };
+  const cambioSun = (nuevoTotal) => {
+    subTotal.current = nuevoTotal;
+  };
+
   const Loading = (loading) => {
     if (loading === true) {
       return (
@@ -67,11 +84,42 @@ function LayoutCarritoCompra() {
     }
   };
 
+  function pagarAhora() {
+    navigate("/app/compra");
+  }
+
+        localStorage.setItem('tipoCompra', 'car')
+
+ localStorage.setItem("compraJSON",[]);
+
+  function agregarProductoALocalStorage(nuevoElemento) {
+    
+    const productosString = localStorage.getItem("compraJSON");
+    let productosArray = productosString ? JSON.parse(productosString) : [];
+    productosArray.push(nuevoElemento);
+    localStorage.setItem("compraJSON", JSON.stringify(productosArray));
+  }
+
+  productsItems?.map((product, index) => (
+              
+       agregarProductoALocalStorage({
+    idProducto:product._id,
+    nombre: product.nombre,
+    precio: product.precio,
+    descuento: product.descuento,
+    cantidadSelect: products[index].cantSelect,
+    total: calcularPrecioDescuento(parseFloat(product.precio), parseFloat(product.descuento)) * parseInt( products[index].cantSelect),
+  })
+            ))
+  
+
+ 
+
   return (
     <div className="layoutCarritoCompra">
       <h2>MI CARRETILLA</h2>
       <div className="contenedorItemCarrito">
-        <table>
+        <table id="idTabla">
           <thead>
             <tr>
               <th>Producto</th>
@@ -94,11 +142,35 @@ function LayoutCarritoCompra() {
                 nameItem={products[index]._id}
                 productoCar={product._id}
                 User={userCarrito}
+                subtotalProp={subTotal}
+                event={cambioSun}
               />
             ))}
+            <tr key={"adassdasdas"} className="TotalPago">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <h4 className="subTotal">SUB TOTAL:</h4>
+                <br /> ${parseFloat(subTotal.current)}
+              </td>
+              <td></td>
+            </tr>
             {Loading(loading)}
           </tbody>
         </table>
+        <div className="contentPago">
+          <ButtonActionProduc
+            nameItem={"Pagarahora"}
+            status={"pagoProduct"}
+            text={"Pagar ahora"}
+            Click={pagarAhora}
+          />
+        </div>
+        <div className="SigueComprando" onClick={() => navigate("/")}>
+          <img src={Arrow_1} /> Continuar Comprando
+        </div>
       </div>
     </div>
   );

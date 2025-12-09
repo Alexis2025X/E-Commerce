@@ -113,4 +113,13 @@ export const PostResena = async (idProduct: string, dataresena: dataReseñaNew) 
   });
 }
 
+     export const ActualizarStock = async (idProduct:string,contCompra:number)=> {
+       fetch(`${API}/productos/compra/${idProduct}`, {
+        method: "PUT",
+        body: JSON.stringify({cantidadSelect: contCompra}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
 
