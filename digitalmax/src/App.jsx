@@ -23,7 +23,7 @@ import ProductoAudioLayout from './layout/ProductoSecciones/Audio/ProductoAudioL
 import ProductoSeguridadLayout from './layout/ProductoSecciones/Seguridad/ProductoSeguridadLayout.jsx'
 import ProductoCasaOficinaLayout from './layout/ProductoSecciones/CasaOficina/ProductoCasaOficinaLayout.jsx'
 import ProductoRedesLayout from './layout/ProductoSecciones/Redes/ProductoRedesLayout.jsx'
-
+import LayoutCompraPedido from './layout/layoutCompraPedido/LayoutCompraPedido.jsx'
 function App() {
   const [count, setCount] = useState(0)
   function cambioSegunUsuario(){
@@ -58,6 +58,7 @@ function App() {
         <Route path={'/app/productos/producto/casa-oficina/:id'} element={<DetallesLayout/>}/> 
         <Route path={'/app/productos/producto/redes/:id'} element={<DetallesLayout/>}/> 
         <Route path={'/app/carretilla'} element={<LayoutCarritoCompra/>}/> 
+        <Route path={'/app/compra'} element={<LayoutCompraPedido/>}/> 
         {/* <Route path="/app/productos/producto/1" element={<DetallesLayout/>}/> Ruta de detalle de producto EL 1 ES TEMPORAL */}
         
         <Route path="*" element={ <div>Pagina no encontrada - 404</div> }/>       

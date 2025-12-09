@@ -20,7 +20,7 @@ function LoginLayout() {
     const navigateReguistre = useNavigate();
  const handleAccessRegistroLogin = () =>{
             navigateReguistre('/crearCuenta')
-        }
+}
         
   
          

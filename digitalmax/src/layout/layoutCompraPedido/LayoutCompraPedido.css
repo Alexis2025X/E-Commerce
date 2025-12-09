@@ -1,0 +1,77 @@
+
+.contentCompraPedidos>div{
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+}
+.contentCompraPedidos>div>div:first-child{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.contentCompraPedidos>div>div:first-child div:first-child{
+    
+    min-width: 100%;
+    min-height: 40%;
+    columns: 2;
+}
+.contentCompraPedidos>div>div input[type = "text"],input[type = "number"],input[type = "email"]{
+    width: 90%;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    outline: none;
+    display: block;
+    max-width: 200px;
+}
+.contentcheck{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.contentCompraPedidos>div>div:first-child label{
+    font-size: 0.8rem;
+}
+
+.contentCompraPedidos>div>div:nth-child(2){
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.contentCompraPedidos>div>div:last-child{
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.tableCompra{
+    min-width: 100%;
+}
+.tableCompra th, .tableCompra td{
+    border: 0px;
+    text-align: left;
+
+}
+.contentInputTarjeta{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (width < 800px) {
+    .contentCompraPedidos>div{
+    grid-template-columns: 1fr;
+    }
+}
+@media (width > 1500px) {
+    .contentCompraPedidos>div{
+    grid-template-columns: 800px 800px;
+}
+}
