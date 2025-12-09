@@ -35,9 +35,13 @@ function LoginLayout() {
 
         try {
             const obtenCookie = await obtenertoken(dataLogin)
+            let tipoUsuario = false
             await obtenerTokenUserLogin()
                 .then((res) => res.json())
                 .then((data) => {if (data.status == "activo") {
+                    let tipoUsuario = true
+                }});
+                if (tipoUsuario == true){
                     Swal.fire({
                         title: "Inicio de sesión exitoso",
                         text: "¡BIENVENIDO A DIGITALMAX ADMINISTRADOR!",
@@ -46,11 +50,8 @@ function LoginLayout() {
                         confirmButtonText: "Aceptar"
                     });
                     navigateReguistre('/app/admin')
-                    return
-                }});
-                
+                }else{
             if (obtenerTokenUserLogin.status)
-
                 if (obtenCookie.status == 201) {
                     Swal.fire({
                         title: "Inicio de sesión exitoso",
@@ -60,7 +61,6 @@ function LoginLayout() {
                         confirmButtonText: "Aceptar"
                     });
                     navigateReguistre('/')
-
                 } else {
                     Swal.fire({
                         title: "Acceso denegado",
@@ -70,6 +70,7 @@ function LoginLayout() {
                         confirmButtonText: "Aceptar"
                     });
                 }
+            }
 
         } catch (error) {
             Swal.fire({
