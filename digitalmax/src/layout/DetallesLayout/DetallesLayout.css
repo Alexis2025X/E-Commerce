@@ -127,10 +127,10 @@
     .contentDetalles>.imgProducto{
         margin-left: 100px;
     }
-    .contentDetalles>div>img {
+    /* .contentDetalles>div>img {
 
-        /* height: 50%; */
-    }
+        height: 50%;
+    } */
 
     .contentDetalles {
         margin-bottom: -10px;
