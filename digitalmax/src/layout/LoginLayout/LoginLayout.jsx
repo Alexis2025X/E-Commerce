@@ -39,7 +39,7 @@ function LoginLayout() {
             await obtenerTokenUserLogin()
                 .then((res) => res.json())
                 .then((data) => {if (data.status == "activo") {
-                    let tipoUsuario = true
+                    tipoUsuario = true
                 }});
                 if (tipoUsuario == true){
                     Swal.fire({
