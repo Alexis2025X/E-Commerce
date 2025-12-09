@@ -9,6 +9,7 @@
     grid-template-columns: 200px 5fr;
 }
 .adminMenuPanel{
+    height: 108%;
     border-right: 3px solid #0066ff;
 }
 .logoPanelContent{
