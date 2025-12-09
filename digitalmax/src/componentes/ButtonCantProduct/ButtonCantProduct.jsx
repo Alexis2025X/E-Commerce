@@ -18,7 +18,10 @@ function ButtonDetallesProduct(prop){
                 idProducto: prop.productoCar,
                 cantSelect:cantidadactual
             }
-            const respuestaActualizacion = await modCantCarrito(user,prop.idProducto,dataProductActual)
+
+                if(prop.productoDetalle == true){
+                    const respuestaActualizacion = await modCantCarrito(user,prop.idProducto,dataProductActual)
+                }
             } catch (error) {
                 console.error(error)
             }

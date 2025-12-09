@@ -7,8 +7,11 @@ import EstadoProducto from '../EstadoProducto/EstadoProducto';
 import { useState } from 'react';
 import { agregarItemCarrito,obtenerTokenUserLogin } from '../../API/UserAPI';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import { calcularPrecioDescuento } from '../ProductoDetallado/ProductoDetallado';
 
 function ProductoStock(prop) {
+
     if (prop.stock > 10) {
         return <EstadoProducto estado="Disponible" text="En Stock" />
     }
@@ -72,6 +75,30 @@ function ProductoDescripcion(prop) {
         }
 
  }
+    const navigateReguistre = useNavigate();
+
+ const compraInmediata = () =>{
+    const cantSelect = document.getElementById("productoCantidadSelect").innerText
+
+        let precioDescuento = calcularPrecioDescuento(parseFloat(prop.CompraProducto.precio), parseFloat(prop.CompraProducto.descuento))
+        let inicioTotal = precioDescuento * parseInt(cantSelect)
+        
+    localStorage.setItem('compraJSON',
+        JSON.stringify([{
+            idProducto: prop.producID,
+            nombre: prop.CompraProducto.nombre,
+            precio: prop.CompraProducto.precio,
+            descuento: prop.CompraProducto.descuento,
+            cantidadSelect: parseInt(cantSelect),
+            total: inicioTotal 
+        }])
+    )
+
+        localStorage.setItem('tipoCompra', 'unica')
+    navigateReguistre('/app/compra')
+ } 
+
+
     return (
 
         <div className='productDesContent'>
@@ -84,14 +111,14 @@ function ProductoDescripcion(prop) {
             </h3>
             <div className='contentButonAction'>
                 <div>
-                    <ButtonDetallesProduct stock={prop.stock} />
+                    <ButtonDetallesProduct stock={prop.stock} productoDetalle = {false} />
                     <p>{prop.descuento}% de Descuento</p>
 
                     <ProductoStock stock={prop.stock} />
                 </div>
                 <span>
                     <ButtonActionProduc Click={handleClickAgregarCarrito} status="ActionActivo" text="Agregar al carrito" />
-                    <ButtonActionProduc status="ActionActivo" text="Comprar ahora" />
+                    <ButtonActionProduc status="ActionActivo" text="Comprar ahora" Click={compraInmediata}/>
                 </span>
 
             </div>

@@ -17,6 +17,7 @@ export function calcularPrecioDescuento(precio, descuento) {
 
 function ProductoDetallado(props) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     localStorage.setItem("compraJSON",[])
 
   const [statusImage, setStatusImage] = useState(false);
 
@@ -183,6 +184,7 @@ function ProductoDetallado(props) {
         </main>
         <main className="calificacionPrecio">
           <PreciosComprar
+          CompraProducto = {props.productoSelect}
             StardCalificacion={props.StardCalificacion}
             producID={props.productID}
             precioDescuento={calcularPrecioDescuento(
