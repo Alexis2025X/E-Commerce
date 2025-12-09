@@ -38,7 +38,7 @@ function LoginLayout() {
             let tipoUsuario = false
             await obtenerTokenUserLogin()
                 .then((res) => res.json())
-                .then((data) => {if (data.status == "activo") {
+                .then((data) => {if (data.status == "active") {
                     tipoUsuario = true
                 }});
                 if (tipoUsuario == true){
