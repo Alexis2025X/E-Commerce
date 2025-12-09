@@ -92,3 +92,9 @@ export const eliminarItemCarritoUser = async (idUser:string, idItem:string)=> {
     fetch(`${API}/user/${idUser}/carrito/${idItem}`, {
         method: 'DELETE'
 })}
+export const eliminarCarrito = async (idUser:string)=> {
+    fetch(`${API}/user/${idUser}/carrito/compra`, {
+        method: 'DELETE'
+})}
+
+

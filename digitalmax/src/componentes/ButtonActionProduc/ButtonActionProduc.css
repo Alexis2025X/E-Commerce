@@ -22,7 +22,13 @@
     background: #0066ff;
     color: #fffff0;
 }
-
+.pagoProduct{
+    width: 200px;
+    height: 50px;
+    margin-bottom: 10px;
+    background: #0066ff;
+    color: #fffff0;
+}
 .ActionActioninactivo{
     background: #0066ff;
     color: #fffff0;
@@ -43,6 +49,13 @@
 .CarritoCompraBTN:hover{
     background: #ff0000;
 }
+
+.contentPago{
+    margin-top: 100px;
+    max-width: 0px;
+}
+
+
 @media (width<600px){
     .CarritoCompraBTN{
         max-width: 40px;
@@ -50,5 +63,9 @@
     }
     .CarritoCompraBTN>p{
         font-size: 0.5rem;
+    }
+    .pagoProduct{
+        width: 100px;
+        height: 40px;
     }
 }

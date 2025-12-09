@@ -63,4 +63,13 @@ export const obtenerProducto = async (id: string) =>
       });
     }
 
+     export const ActualizarStock = async (idProduct:string,contCompra:number)=> {
+       fetch(`${API}/productos/compra/${idProduct}`, {
+        method: "PUT",
+        body: JSON.stringify({cantidadSelect: contCompra}),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
 
