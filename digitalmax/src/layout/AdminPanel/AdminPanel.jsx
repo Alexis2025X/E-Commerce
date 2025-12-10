@@ -60,8 +60,8 @@ function AdminPanel() {
             <div className="contentPanel">
                 <div className="adminMenuPanel">
                     <AdminMenu text={"Productos >"} icon={productosLogo} event={handleClickMenuProductos} />
-                    <AdminMenu text={"Pedidos"} icon={pedidosLogo} />
-                    <AdminMenu text={"clientes >"} icon={clientesLogo} />
+                    {/* <AdminMenu text={"Pedidos"} icon={pedidosLogo} />
+                    <AdminMenu text={"clientes >"} icon={clientesLogo} /> */}
                 </div>
                 <div className="adminContentPanel">
                     <img src={logo_digitalmax} className="logoPanelContent" alt="" />
