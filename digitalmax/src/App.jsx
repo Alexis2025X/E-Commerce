@@ -1,5 +1,6 @@
 import { use, useEffect, useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+//import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import LayoutPadre from './layout/LayoutPadre.jsx'
 import Productos from './layout/ProductosLayout/Productos'
@@ -31,7 +32,7 @@ function App() {
   }
   return (
     <>
-    <Router>{/* Envolvemos la aplicación */}
+    <HashRouter>{/* Envolvemos la aplicación */}
       <Routes>{/* Para el contenedor de rutas */}
       <Route index element={<ProductosLayout/>}/>
       <Route path='/dispositivos-moviles' element={<ProductoDispositivosMovilesLayout/>}/>
@@ -44,9 +45,10 @@ function App() {
       <Route path='/' element={ <LayoutPadre/>}>{/* Envuelvo las rutas en un LayoutPadre el cual lleva el MenuHeader */}
       
         <Route path='/crearCuenta' element={<LayoutCrearCuenta/>}/>{/* Definimos la ruta */}
-        <Route path="/login" element={<LoginLayout/>}/> {/* acceso a la ruta de Login */}
+        {/* <Route path="/login" element={<LoginLayout/>}/> acceso a la ruta de Login */}
               
-        <Route path = '/Login' element = {<LoginLayout/>}></Route>      
+        <Route path = '/Login' element = {<LoginLayout/>}>
+      </Route>      
         <Route path='/app' element={<LayoutMenuHamburguesa/>}>{/* Envuelvo con el MenuHamburguesa */}
         
         <Route path={'/app/productos/producto/:id'} element={<DetallesLayout/>}/> 
@@ -70,7 +72,7 @@ function App() {
       <Route path = '/app/admin' element = {<AdminPanel/>}></Route> 
       </Routes>
       
-    </Router>
+    </HashRouter>
     {/* <HamburguerMenu/>
     <Header/>
     <DetallesLayout/> */}
