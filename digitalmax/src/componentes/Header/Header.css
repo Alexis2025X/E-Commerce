@@ -96,19 +96,22 @@
   
 }
 .headercontenicon>img:nth-child(2){
+    
     position: absolute;
     top: 0px;
 }
 .contentMenuHover{
+    border: 1px solid rgb(194, 191, 191) ;
+    border-radius: 10%;
     position: absolute;
-    top: 70px;
-    right: 13%;
+    top: 55px;
+    right: 7%;
     font-size: 0.8rem;
     list-style: none;
     text-decoration: none;
     color: #1d1d1d;
     background-color: #fffff0;
-    padding: 0;
+    padding: 4px;
     display: none;
 }
 .contentMenuHoverActive{
