@@ -34,42 +34,47 @@ function LoginLayout() {
     const submitLogin = async () => {
 
         try {
-            const obtenCookie = await obtenertoken(dataLogin)
-            let tipoUsuario = false
-            await obtenerTokenUserLogin()
-                .then((res) => res.json())
-                .then((data) => {if (data.status == "active") {
-                    tipoUsuario = true
-                }});
-                if (tipoUsuario == true){
-                    Swal.fire({
-                        title: "Inicio de sesión exitoso",
-                        text: "¡BIENVENIDO A DIGITALMAX ADMINISTRADOR!",
-                        icon: "success",
-                        confirmButtonColor: "#3085d6",
-                        confirmButtonText: "Aceptar"
-                    });
-                    navigateReguistre('/app/admin')
-                }else{
-            if (obtenerTokenUserLogin.status)
-                if (obtenCookie.status == 201) {
-                    Swal.fire({
-                        title: "Inicio de sesión exitoso",
-                        text: "¡BIENVENIDO A DIGITALMAX!",
-                        icon: "success",
-                        confirmButtonColor: "#3085d6",
-                        confirmButtonText: "Aceptar"
-                    });
-                    navigateReguistre('/')
-                } else {
-                    Swal.fire({
-                        title: "Acceso denegado",
-                        text: "Contraeña y/o usuario incorrectos",
-                        icon: "error",
-                        confirmButtonColor: "#3085d6",
-                        confirmButtonText: "Aceptar"
-                    });
-                }
+            const obtenCookie = await obtenertoken(dataLogin);
+
+            // Primero obtén los datos del usuario
+            const response = await obtenerTokenUserLogin();
+            const userData = await response.json();
+
+            // Verifica si el usuario está activo
+            const isActiveUser = userData.status === "active";
+
+            // Verifica el estado de la cookie también
+            const isCookieValid = obtenCookie.status === 201;
+
+            if (isActiveUser && isCookieValid) {
+                // Usuario activo y cookie válida → Administrador
+                Swal.fire({
+                    title: "Inicio de sesión exitoso",
+                    text: "¡BIENVENIDO A DIGITALMAX ADMINISTRADOR!",
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Aceptar"
+                });
+                navigateReguistre('/app/admin');
+            } else if (isCookieValid) {
+                // Cookie válida pero usuario no activo (o no admin) → Usuario normal
+                Swal.fire({
+                    title: "Inicio de sesión exitoso",
+                    text: "¡BIENVENIDO A DIGITALMAX!",
+                    icon: "success",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Aceptar"
+                });
+                navigateReguistre('/');
+            } else {
+                // Credenciales inválidas
+                Swal.fire({
+                    title: "Acceso denegado",
+                    text: "Contraseña y/o usuario incorrectos",
+                    icon: "error",
+                    confirmButtonColor: "#3085d6",
+                    confirmButtonText: "Aceptar"
+                });
             }
 
         } catch (error) {
