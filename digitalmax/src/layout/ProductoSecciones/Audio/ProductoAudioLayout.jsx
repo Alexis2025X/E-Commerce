@@ -102,7 +102,7 @@ useEffect(() => {
     
     <>
     <Header search={search} searcher={searcher}/>
-    <HamburguerMenu />
+    {/* <HamburguerMenu /> */}
     <main className='mainConteiner'>
 
       <h2 className='subtituloProductos'>¡Vive cada nota! <br /> Experimenta la calidad de sonido que mereces.</h2>

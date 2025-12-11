@@ -102,7 +102,7 @@ useEffect(() => {
     
     <>
     <Header search={search} searcher={searcher}/>
-    <HamburguerMenu />
+    {/* <HamburguerMenu /> */}
     <main className='mainConteiner'>
 
       <h2 className='subtituloProductos'>¡Potencia en tus manos! <br /> Descubre los dispositivos que conectan tu mundo.</h2>

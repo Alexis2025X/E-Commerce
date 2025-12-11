@@ -101,7 +101,7 @@ function mostrarProductos(resultados){
     
     <>
     <Header search={search} searcher={searcher}/>
-    <HamburguerMenu />
+    {/* <HamburguerMenu /> */}
     <main className='mainConteiner'>
 
       <h2 className='subtituloProductos'>¡Protege lo que más importa!<br /> Tecnología avanzada para tu tranquilidad.</h2>

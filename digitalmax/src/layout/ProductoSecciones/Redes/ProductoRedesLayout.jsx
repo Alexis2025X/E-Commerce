@@ -101,7 +101,7 @@ function mostrarProductos(resultados){
     
     <>
     <Header search={search} searcher={searcher}/>
-    <HamburguerMenu />
+    {/* <HamburguerMenu /> */}
     <main className='mainConteiner'>
 
       <h2 className='subtituloProductos'>¡Conectividad sin límites! <br /> Construye la red más rápida y estable.</h2>

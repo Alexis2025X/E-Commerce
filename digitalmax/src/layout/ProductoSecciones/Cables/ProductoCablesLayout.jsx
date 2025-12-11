@@ -101,7 +101,7 @@ function mostrarProductos(resultados){
     
     <>
     <Header search={search} searcher={searcher}/>
-    <HamburguerMenu />
+    {/* <HamburguerMenu /> */}
     <main className='mainConteiner'>
 
       <h2 className='subtituloProductos'>¡La conexión perfecta! <br /> Encuentra el cable ideal para cada dispositivo.</h2>
